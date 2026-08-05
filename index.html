@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 🔍 ฝังรหัสแท็กยืนยันสิทธิ์ความเป็นเจ้าของเว็บบนระบบ Google Search Console สำเร็จ -->
+    <!-- 🔍 รหัสแท็กยืนยันสิทธิ์ความเป็นเจ้าของเว็บบนระบบ Google Search Console -->
     <meta name="google-site-verification" content="WOVO0j_rsNjak__nLoIjjbOrKtQMo8MSdTe6xSTkMhc" />
     
     <title>ผลบอลสดวันนี้ เช็กผลบอลสดทุกลีกทั่วโลกเรียลไทม์ ตารางคะแนนฟุตบอลอัปเดตตลอด 24 ชม. | MATRIX LIVESCORE</title>
@@ -59,6 +59,7 @@
                 <h1 class="main-title-seo" id="display-title">📢 ตารางคะแนนและผลการแข่งขันสดแบบ Real-time ทุกคู่ของวันนี้</h1>
             </div>
             <div class="widget-render-zone">
+                <!-- วิดเจ็ตหลักดั้งเดิมจาก Broadage Sports -->
                 <div id="DOM_element_id_in_your_website_1785962037862"></div>
             </div>
         </main>
@@ -66,7 +67,7 @@
 
     <footer>&copy; 2026 Matrix LiveScore Platform | ข้อมูลแมตช์ฟุตบอลอัปเดตเรียลไทม์ส่งตรงจากสนามจริง</footer>
 
-    <!-- ฝังชุดสคริปต์ดั้งเดิมของ Broadage Sports -->
+    <!-- 🔗 สคริปต์หลักดั้งเดิมของ Broadage Sports ที่ซิงค์บัญชีของคุณ -->
     <script>
       (function(b, s, p, o, r, t) {
         b["broadage"] = b["broadage"] || [];
@@ -75,26 +76,35 @@
           r.async = true; r.src = p; t.parentNode.insertBefore(r, t);
         }
         b["broadage"].push({ "bundleId": o.bundleId, "widgets": o.widgets, "accountId": o.accountId });
-      })(window, "script", "//://broadage.com", {
+      })(window, "script", "//cdn-saas.broadage.com/widgets/loader/loader.js", {
         "bundleId": ["all-ls"],
         "accountId": "ebfc2e8b-9fa9-4722-98cf-d81b181eb51d",
         "widgets": {
           "liveScore": [{
             "element": "DOM_element_id_in_your_website_1785962037862",
             "coverageId": "6bf0cf44-e13a-44e1-8008-ff17ba6c2128",
-            "options": { "goalSound": true, "webNotification": true, "onlyNotifyTopEvents": true, "sportFilter": false, "remainingTime": true, "showDatePickerOnAllSelectedDates": true, "sportId": 1 }
+            "options": { 
+              "goalSound": true, 
+              "webNotification": true, 
+              "onlyNotifyTopEvents": true, 
+              "sportFilter": false, 
+              "remainingTime": true, 
+              "showDatePickerOnAllSelectedDates": true, 
+              "sportId": 1 
+            }
           }]
         }
       });
     </script>
 
-    <!-- ระบบช่วยกรองทัวร์นาเมนต์แยกรายลีกย่อย -->
+    <!-- ระบบช่วยคัดกรองชื่อทัวร์นาเมนต์เมื่อกดปุ่มเมนูซ้ายมือ -->
     <script>
         function filterBroadageLeague(keyword, element, titleText) {
             let buttons = document.getElementsByClassName('league-item-box');
             for (let i = 0; i < buttons.length; i++) { buttons[i].classList.remove('active'); }
             element.classList.add('active');
             document.getElementById('display-title').innerText = titleText;
+            
             let widgetMain = document.getElementById('DOM_element_id_in_your_website_1785962037862');
             if (widgetMain) {
                 let innerInput = widgetMain.querySelector('input[type="text"], .brd-search-input, [class*="search"] input');
