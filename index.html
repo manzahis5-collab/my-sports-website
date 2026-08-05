@@ -3,88 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports Hub - เว็บไซต์ข้อมูลกีฬา</title>
-    <!-- นำเข้า Tailwind CSS สำหรับจัดหน้าตาให้สวยงาม -->
-<link href="https://jsdelivr.net" rel="stylesheet">
+    <title>LiveScore - ผลบอลสดและตารางคะแนน</title>
+    <!-- นำเข้า Tailwind CSS สำหรับจัดดีไซน์สีดาร์กโมด -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
 </head>
-<body class="bg-gray-900 text-white font-sans">
+<body class="bg-black text-gray-200 font-sans min-h-screen">
 
-    <!-- แถบเมนูด้านบน -->
-    <nav class="bg-gray-800 p-4 shadow-md">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-yellow-500">🏆 SportsHub</h1>
-            <div class="space-x-4">
-                <a href="#" class="hover:text-yellow-400">หน้าแรก</a>
-                <a href="#" class="hover:text-yellow-400">ฟุตบอล</a>
-                <a href="#" class="hover:text-yellow-400">บาสเกตบอล</a>
-                <a href="#admin" class="bg-yellow-600 px-3 py-1.5 rounded hover:bg-yellow-500 transition">เข้าสู่หลังบ้าน</a>
+    <!-- 1. แถบเมนูด้านบนสุด (Top Navigation) -->
+    <nav class="bg-zinc-900 border-b border-gray-800 p-4 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <span class="text-2xl font-black text-orange-500 tracking-wider">LiveScore</span>
+                <a href="#" class="text-orange-500 font-bold border-b-2 border-orange-500 pb-1">คะแนน</a>
+                <a href="#" class="text-gray-400 hover:text-white transition">รายการโปรด</a>
             </div>
+            <div class="text-sm bg-gray-800 px-3 py-1.5 rounded-md text-gray-400">🕒 2026-08-06</div>
         </div>
     </nav>
 
-    <!-- ส่วนเนื้อหาหลัก -->
-    <main class="container mx-auto my-8 p-4">
-        <!-- สรุปผลการแข่งขันล่าสุด -->
-        <section class="mb-8">
-            <h2 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">🔴 ผลการแข่งขันล่าสุด</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- การแข่งขันที่ 1 -->
-                <div class="bg-gray-800 p-4 rounded-lg flex justify-between items-center shadow">
-                    <span class="font-medium">ทีม FC Barcelona</span>
-                    <span class="bg-yellow-500 text-gray-900 px-3 py-1 rounded font-bold">2 - 1</span>
-                    <span class="font-medium">ทีม Real Madrid</span>
-                </div>
-                <!-- การแข่งขันที่ 2 -->
-                <div class="bg-gray-800 p-4 rounded-lg flex justify-between items-center shadow">
-                    <span class="font-medium">ทีม LA Lakers</span>
-                    <span class="bg-yellow-500 text-gray-900 px-3 py-1 rounded font-bold">102 - 98</span>
-                    <span class="font-medium">ทีม GS Warriors</span>
-                </div>
-            </div>
-        </section>
+    <!-- 2. แถบเลือกประเภทกีฬา (Sport Categories) -->
+    <div class="bg-neutral-900 shadow-inner py-3 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto flex space-x-2 px-4 overflow-x-auto">
+            <button class="bg-white text-black font-bold px-4 py-1.5 rounded-full text-sm">ฟุตบอล</button>
+            <button class="bg-gray-800 text-gray-300 hover:bg-gray-700 px-4 py-1.5 rounded-full text-sm transition">ฮอกกี้</button>
+            <button class="bg-gray-800 text-gray-300 hover:bg-gray-700 px-4 py-1.5 rounded-full text-sm transition">บาสเกตบอล</button>
+            <button class="bg-gray-800 text-gray-300 hover:bg-gray-700 px-4 py-1.5 rounded-full text-sm transition">เทนนิส</button>
+            <button class="bg-gray-800 text-gray-300 hover:bg-gray-700 px-4 py-1.5 rounded-full text-sm transition">คริกเก็ต</button>
+        </div>
+    </div>
 
-        <!-- ตารางคะแนน -->
-        <section>
-            <h2 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">📊 ตารางคะแนนรวม</h2>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left bg-gray-800 rounded-lg overflow-hidden shadow">
-                    <thead class="bg-gray-700 text-yellow-400">
-                        <tr>
-                            <th class="p-3">อันดับ</th>
-                            <th class="p-3">ชื่อทีม</th>
-                            <th class="p-3">แข่ง</th>
-                            <th class="p-3">ชนะ</th>
-                            <th class="p-3">แพ้</th>
-                            <th class="p-3">คะแนนรวม</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-700">
-                        <tr>
-                            <td class="p-3 font-bold text-center">1</td>
-                            <td class="p-3">ทีม FC Barcelona</td>
-                            <td class="p-3">10</td>
-                            <td class="p-3">8</td>
-                            <td class="p-3">2</td>
-                            <td class="p-3 text-yellow-400 font-bold">24</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 font-bold text-center">2</td>
-                            <td class="p-3">ทีม LA Lakers</td>
-                            <td class="p-3">10</td>
-                            <td class="p-3">7</td>
-                            <td class="p-3">3</td>
-                            <td class="p-3 text-yellow-400 font-bold">21</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <!-- 3. โครงสร้างหลักแบบแบ่งคอลัมน์ (Main Layout) -->
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6 p-4">
+        
+        <!-- 📱 คอลัมน์ซ้าย: เมนูทีมและลีกยอดนิยม (Sidebar) -->
+        <aside class="space-y-6 lg:col-span-1">
+            <!-- ทีมยอดนิยม -->
+            <div class="bg-neutral-900 rounded-lg p-4 border border-gray-800">
+                <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">ทีมยอดนิยม</h3>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex items-center space-x-3 hover:text-white cursor-pointer"><span class="text-red-500">🔴</span> <span>แมนเชสเตอร์ ยูไนเต็ด</span></li>
+                    <li class="flex items-center space-x-3 hover:text-white cursor-pointer"><span class="text-red-600">🔴</span> <span>ลิเวอร์พูล</span></li>
+                    <li class="flex items-center space-x-3 hover:text-white cursor-pointer"><span class="text-red-400">🔴</span> <span>อาร์เซนอล</span></li>
+                    <li class="flex items-center space-x-3 hover:text-white cursor-pointer"><span class="text-blue-400">🔵</span> <span>แมนเชสเตอร์ ซิตี้</span></li>
+                    <li class="flex items-center space-x-3 hover:text-white cursor-pointer"><span class="text-white">⚪</span> <span>เรอัล มาดริด</span></li>
+                </ul>
             </div>
-        </section>
-    </main>
+
+            <!-- ลีกยอดนิยม -->
+            <div class="bg-neutral-900 rounded-lg p-4 border border-gray-800">
+                <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">การแข่งขัน</h3>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex items-center justify-between hover:text-white cursor-pointer"><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 พรีเมียร์ลีก</span> <span class="text-xs text-gray-500">อังกฤษ</span></li>
+                    <li class="flex items-center justify-between hover:text-white cursor-pointer"><span>🇮🇹 เซเรีย อา</span> <span class="text-xs text-gray-500">อิตาลี</span></li>
+                    <li class="flex items-center justify-between hover:text-white cursor-pointer"><span>🇩🇪 บุนเดสลีกา</span> <span class="text-xs text-gray-500">เยอรมนี</span></li>
+                    <li class="flex items-center justify-between hover:text-white cursor-pointer"><span>🇫🇷 ลีกเอิง 1</span> <span class="text-xs text-gray-500">ฝรั่งเศส</span></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- ⚽ คอลัมน์ขวา: รายการผลบอลสด (Live Matches) -->
+        <main class="lg:col-span-3 space-y-4">
+            
+            <!-- หัวข้อลีกที่กำลังแข่ง -->
+            <div class="bg-neutral-900 rounded-lg overflow-hidden border border-gray-800">
+                <div class="bg-zinc-800 px-4 py-3 flex justify-between items-center border-b border-gray-700">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-yellow-500 text-lg">⚽</span>
+                        <div>
+                            <h2 class="font-bold text-sm text-white">Champions League Qualification</h2>
+                            <p class="text-xs text-gray-400">International</p>
+                        </div>
+                    </div>
+                    <span class="text-xs text-gray-400 hover:underline cursor-pointer">ดูทั้งหมด &gt;</span>
+                </div>
+
+                <!-- ตารางคู่แข่งขันที่ 1 (กำลังสด) -->
+                <div class="p-4 border-b border-gray-800 hover:bg-zinc-800 transition flex justify-between items-center">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-xs font-bold text-orange-500 bg-orange-950 px-2 py-0.5 rounded animate-pulse">52'</span>
+                        <div class="space-y-1 text-sm font-medium">
+                            <div class="flex items-center justify-between w-48"><span>AGF อาร์ฮุส</span> <span class="font-bold text-white">1</span></div>
+                            <div class="flex items-center justify-between w-48 text-gray-400"><span>ซาบาห์ บากู</span> <span class="font-bold">0</span></div>
+                        </div>
+                    </div>
+                    <button class="text-gray-500 hover:text-yellow-500 text-xl">⭐</button>
+                </div>
+
+                <!-- ตารางคู่แข่งขันที่ 2 (กำลังสด) -->
+                <div class="p-4 hover:bg-zinc-800 transition flex justify-between items-center">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-xs font-bold text-orange-500 bg-orange-950 px-2 py-0.5 rounded animate-pulse">22'</span>
+                        <div class="space-y-1 text-sm font-medium">
+                            <div class="flex items-center justify-between w-48"><span>เฟเนร์บาห์เช่</span> <span class="font-bold text-white">1</span></div>
+                            <div class="flex items-center justify-between w-48 text-gray-400"><span>ลีลล์</span> <span class="font-bold">0</span></div>
+                        </div>
+                    </div>
+                    <button class="text-gray-500 hover:text-yellow-500 text-xl">⭐</button>
+                </div>
+            </div>
+
+            <!-- ลีกถัดไป: Europa League -->
+            <div class="bg-neutral-900 rounded-lg overflow-hidden border border-gray-800">
+                <div class="bg-zinc-800 px-4 py-3 flex justify-between items-center border-b border-gray-700">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-blue-400 text-lg">⚽</span>
+                        <div>
+                            <h2 class="font-bold text-sm text-white">Europa League Qualification</h2>
+                            <p class="text-xs text-gray-400">International</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- คู่แข่งขันที่ 3 -->
+                <div class="p-4 hover:bg-zinc-800 transition flex justify-between items-center">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-xs font-bold text-gray-400 bg-gray-800 px-2 py-0.5 rounded">23:00</span>
+                        <div class="space-y-1 text-sm font-medium">
+                            <div class="w-48 text-gray-300">อาแจกซ์ อัมสเตอร์ดัม</div>
+                            <div class="w-48 text-gray-300">พานาธิไนกอส</div>
+                        </div>
+                    </div>
+                    <button class="text-gray-500 hover:text-yellow-500 text-xl">⭐</button>
+                </div>
+            </div>
+
+        </main>
+    </div>
 
     <!-- ส่วนท้ายเว็บ -->
-    <footer class="text-center p-4 bg-gray-800 text-gray-400 mt-12 text-sm">
-        &copy; 2026 SportsHub Dashboard. สงวนลิขสิทธิ์ข้อมูลกีฬาเพื่อความบันเทิงและการศึกษาเท่านั้น
+    <footer class="text-center py-6 border-t border-gray-800 text-gray-600 text-xs mt-12 bg-neutral-950">
+        &copy; 2026 LiveScore Clone Dashboard. พัฒนาขึ้นเพื่อการศึกษาและการจำลองดีไซน์ข้อมูลกีฬาเท่านั้น
     </footer>
 
 </body>
 </html>
+
