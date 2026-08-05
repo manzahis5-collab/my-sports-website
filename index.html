@@ -3,142 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ LiveScore CyberSports</title>
-    <!-- นำเข้า Tailwind CSS และฟอนต์ Google Fonts เพื่อความโฉบเฉี่ยว -->
-    <link href="https://jsdelivr.net" rel="stylesheet">
-    <link href="https://googleapis.com" rel="stylesheet">
+    <title>⚡ LIVE.SPORTS CYBERPUNK</title>
     <style>
-        body { font-family: 'Kanit', sans-serif; }
-        .digital-font { font-family: 'Orbitron', sans-serif; }
-        /* เอฟเฟกต์แสงนีออนเรืองแสง */
-        .glow-orange { filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.6)); }
-        .glow-green { filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.6)); }
-        .card-gradient { background: linear-gradient(135deg, rgba(24,24,27,1) 0%, rgba(39,39,42,0.8) 100%); }
+        /* สไตล์หลักฝังในตัวเพื่อป้องกันระบบไม่โหลดโครงสร้าง */
+        body {
+            background-color: #09090b;
+            color: #f4f4f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* แถบเมนูด้านบนแบบดุดัน */
+        nav {
+            background-color: #18181b;
+            border-bottom: 2px solid #27272a;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            items-center: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #f97316;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+        }
+        /* เมนูการจัดหน้าแบบ 2 คอลัมน์กว้างใหญ่ */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 25px;
+            margin-top: 25px;
+        }
+        /* กล่องซ้าย - รายชื่อทีม */
+        .sidebar {
+            background-color: #18181b;
+            border: 1px solid #27272a;
+            border-radius: 16px;
+            padding: 20px;
+            height: fit-content;
+        }
+        .sidebar h3 {
+            color: #f97316;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0;
+            border-left: 4px solid #f97316;
+            padding-left: 10px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            padding: 12px 10px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            font-size: 14px;
+            transition: 0.3s;
+            cursor: pointer;
+            background-color: #202024;
+        }
+        .sidebar li:hover {
+            background-color: #27272a;
+            color: #ffffff;
+        }
+        /* กล่องขวา - ตารางคะแนนและผลการแข่งขันสด */
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .league-card {
+            background-color: #18181b;
+            border: 1px solid #27272a;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .league-header {
+            background: linear-gradient(90deg, #27272a, #18181b);
+            padding: 15px 20px;
+            font-weight: bold;
+            font-size: 16px;
+            border-bottom: 1px solid #27272a;
+            color: #ffffff;
+        }
+        .match-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #27272a;
+            transition: 0.3s;
+        }
+        .match-row:hover {
+            background-color: #202024;
+        }
+        /* ป้ายบอกสถานะไลฟ์นีออนเรืองแสง */
+        .live-tag {
+            background-color: #052e16;
+            color: #4ade80;
+            border: 1px solid #14532d;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+        }
+        .time-tag {
+            background-color: #27272a;
+            color: #a1a1aa;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+        .team-score-zone {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 250px;
+        }
+        .team-line {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .score-active {
+            color: #f97316;
+            font-weight: 900;
+            font-size: 18px;
+            text-shadow: 0 0 8px rgba(249, 115, 22, 0.4);
+        }
+        .fav-star {
+            color: #52525b;
+            font-size: 22px;
+            cursor: pointer;
+            transition: 0.2s;
+            background: none;
+            border: none;
+        }
+        .fav-star:hover {
+            color: #eab308;
+            transform: scale(1.2);
+        }
     </style>
 </head>
-<body class="bg-zinc-950 text-gray-100 min-h-screen selection:bg-orange-500 selection:text-black">
+<body>
 
-    <!-- 1. แอนิเมชันเส้นสีนีออนวิ่งด้านบนสุด -->
-    <div class="h-1 w-full bg-gradient-to-r from-orange-500 via-yellow-400 to-red-600 animate-pulse"></div>
-
-    <!-- 2. แถบเมนูด้านบน (Neon Navigation) -->
-    <nav class="bg-zinc-900/90 border-b border-zinc-800 p-5 sticky top-0 z-50 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-8">
-                <span class="text-3xl font-black italic text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-yellow-400 tracking-widest glow-orange digital-font">LIVE.SPORTS</span>
-                <div class="hidden md:flex space-x-6 text-sm font-medium tracking-wide">
-                    <a href="#" class="text-orange-500 border-b-2 border-orange-500 pb-2 transition duration-300">ผลการแข่งขัน</a>
-                    <a href="#" class="text-gray-400 hover:text-orange-400 pb-2 transition duration-300">ตารางคะแนนย้อนหลัง</a>
-                    <a href="#" class="text-gray-400 hover:text-orange-400 pb-2 transition duration-300">วิเคราะห์เกม</a>
-                </div>
-            </div>
-            <div class="digital-font text-sm font-bold text-orange-400 bg-orange-950/50 border border-orange-800 px-3 py-1.5 rounded-md glow-orange">
-                🕒 01:32 AM
-            </div>
-        </div>
+    <!-- แถบเมนูด้านบนสุด -->
+    <nav>
+        <div class="logo">LIVE.SPORTS</div>
+        <div style="color: #a1a1aa; font-size: 14px; font-weight: bold;">🕒 ระบบอัปเดตออโต้รัน</div>
     </nav>
 
-    <!-- 3. ส่วนหัวข้อเด่น (Hero Section) เพิ่มความกระตือรือร้น -->
-    <header class="max-w-7xl mx-auto mt-6 px-4">
-        <div class="bg-gradient-to-r from-zinc-900 to-zinc-800 border border-zinc-800 p-6 rounded-2xl relative overflow-hidden shadow-2xl">
-            <div class="absolute -right-10 -top-10 w-40 h-40 bg-orange-500/10 rounded-full blur-3xl"></div>
-            <h1 class="text-xl md:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">🔥 ศูนย์รวมข้อมูลกีฬายุคใหม่</h1>
-            <p class="text-xs text-gray-400 mt-1">อัปเดตสถานะความเคลื่อนไหวจากสนามสดตรงถึงหน้าจอคุณ ตลอด 24 ชั่วโมง</p>
-        </div>
-    </header>
-
-    <!-- 4. โครงสร้างหลัก (Main Content Matrix) -->
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6 p-4">
-        
-        <!-- 📱 คอลัมน์ซ้าย: รายชื่อทีมโปรดในดวงใจ -->
-        <aside class="space-y-6 lg:col-span-1">
-            <div class="bg-zinc-900/50 rounded-2xl p-5 border border-zinc-800 shadow-xl">
-                <h3 class="text-xs font-black text-orange-500 uppercase tracking-widest mb-4 border-l-4 border-orange-500 pl-2">สโมสรยอดนิยม</h3>
-                <ul class="space-y-2.5 text-sm font-medium text-gray-300">
-                    <li class="flex items-center justify-between p-2 rounded-xl hover:bg-zinc-800/60 transition group cursor-pointer">
-                        <div class="flex items-center space-x-3">
-                            <span class="w-2 h-2 rounded-full bg-red-500 shadow-lg shadow-red-500/50"></span>
-                            <span class="group-hover:text-white">แมนเชสเตอร์ ยูไนเต็ด</span>
-                        </div>
-                        <span class="text-xs text-zinc-500 group-hover:text-orange-400">★</span>
-                    </li>
-                    <li class="flex items-center justify-between p-2 rounded-xl hover:bg-zinc-800/60 transition group cursor-pointer">
-                        <div class="flex items-center space-x-3">
-                            <span class="w-2 h-2 rounded-full bg-red-600 shadow-lg shadow-red-600/50"></span>
-                            <span class="group-hover:text-white">ลิเวอร์พูล</span>
-                        </div>
-                        <span class="text-xs text-zinc-500 group-hover:text-orange-400">★</span>
-                    </li>
-                    <li class="flex items-center justify-between p-2 rounded-xl hover:bg-zinc-800/60 transition group cursor-pointer">
-                        <div class="flex items-center space-x-3">
-                            <span class="w-2 h-2 rounded-full bg-blue-500 shadow-lg shadow-blue-500/50"></span>
-                            <span class="group-hover:text-white">แมนเชสเตอร์ ซิตี้</span>
-                        </div>
-                        <span class="text-xs text-zinc-500 group-hover:text-orange-400">★</span>
-                    </li>
-                </ul>
-            </div>
-        </aside>
-
-        <!-- ⚽ คอลัมน์ขวา: กล่องแสดงคะแนนแบบนีออนเรืองแสง -->
-        <main class="lg:col-span-3 space-y-4">
+    <div class="container">
+        <!-- แบ่งสัดส่วน 2 ฝั่งซ้ายขวา -->
+        <div class="main-layout">
             
-            <div class="bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
-                <!-- หัวข้อรายการแข่งขัน -->
-                <div class="bg-gradient-to-r from-zinc-800 to-zinc-900 px-5 py-4 flex justify-between items-center border-b border-zinc-800">
-                    <div class="flex items-center space-x-3">
-                        <div class="bg-orange-500/10 p-2 rounded-lg text-orange-500 glow-orange">🏆</div>
-                        <div>
-                            <h2 class="font-extrabold text-sm text-white tracking-wide">Champions League Qualification</h2>
-                            <p class="text-xs text-zinc-400">International Tournament</p>
+            <!-- ด้านซ้าย: รายชื่อทีม -->
+            <aside class="sidebar">
+                <h3>สโมสรยอดนิยม</h3>
+                <ul>
+                    <li>🔴 แมนเชสเตอร์ ยูไนเต็ด</li>
+                    <li>🔴 ลิเวอร์พูล</li>
+                    <li>🔴 อาร์เซนอล</li>
+                    <li>🔵 แมนเชสเตอร์ ซิตี้</li>
+                    <li>⚪ เรอัล มาดริด</li>
+                </ul>
+            </aside>
+
+            <!-- ด้านขวา: กล่องผลบอลสด -->
+            <main class="content-area">
+                
+                <div class="league-card">
+                    <div class="league-header">🏆 Champions League Qualification</div>
+                    
+                    <!-- แมตช์ที่ 1 -->
+                    <div class="match-row">
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <span class="live-tag">LIVE 52'</span>
+                            <div class="team-score-zone">
+                                <div class="team-line" style="color: #fff;"><span>AGF อาร์ฮุส</span> <span class="score-active">1</span></div>
+                                <div class="team-line" style="color: #a1a1aa;"><span>ซาบาห์ บากู</span> <span>0</span></div>
+                            </div>
                         </div>
+                        <button class="fav-star">★</button>
+                    </div>
+
+                    <!-- แมตช์ที่ 2 -->
+                    <div class="match-row">
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <span class="live-tag">LIVE 22'</span>
+                            <div class="team-score-zone">
+                                <div class="team-line" style="color: #fff;"><span>เฟเนร์บาห์เช่</span> <span class="score-active">1</span></div>
+                                <div class="team-line" style="color: #a1a1aa;"><span>ลีลล์</span> <span>0</span></div>
+                            </div>
+                        </div>
+                        <button class="fav-star">★</button>
                     </div>
                 </div>
 
-                <!-- แมตช์ที่ 1 (กำลังถ่ายทอดสด) -->
-                <div class="p-5 border-b border-zinc-800/60 hover:bg-zinc-800/30 transition duration-300 flex justify-between items-center card-gradient">
-                    <div class="flex items-center space-x-6">
-                        <span class="digital-font text-xs font-black text-green-400 bg-green-950/60 border border-green-800/50 px-2.5 py-1 rounded-md animate-pulse glow-green">LIVE 52'</span>
-                        <div class="space-y-2 text-sm font-semibold tracking-wide">
-                            <div class="flex items-center justify-between w-64 text-white">
-                                <span>AGF อาร์ฮุส</span> 
-                                <span class="digital-font font-black text-lg text-orange-400 glow-orange">1</span>
-                            </div>
-                            <div class="flex items-center justify-between w-64 text-zinc-400">
-                                <span>ซาบาห์ บากู</span> 
-                                <span class="digital-font font-black text-lg">0</span>
+                <div class="league-card">
+                    <div class="league-header">⚽ Europa League Qualification</div>
+                    
+                    <!-- แมตช์ที่ 3 -->
+                    <div class="match-row">
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <span class="time-tag">23:00</span>
+                            <div class="team-score-zone">
+                                <div class="team-line" style="color: #e4e4e7;"><span>อาแจกซ์ อัมสเตอร์ดัม</span> <span>-</span></div>
+                                <div class="team-line" style="color: #e4e4e7;"><span>พานาธิไนกอส</span> <span>-</span></div>
                             </div>
                         </div>
+                        <button class="fav-star">★</button>
                     </div>
-                    <button class="text-zinc-600 hover:text-yellow-400 transition text-xl transform hover:scale-125 duration-200">★</button>
                 </div>
 
-                <!-- แมตช์ที่ 2 (กำลังถ่ายทอดสด) -->
-                <div class="p-5 hover:bg-zinc-800/30 transition duration-300 flex justify-between items-center card-gradient">
-                    <div class="flex items-center space-x-6">
-                        <span class="digital-font text-xs font-black text-green-400 bg-green-950/60 border border-green-800/50 px-2.5 py-1 rounded-md animate-pulse glow-green">LIVE 22'</span>
-                        <div class="space-y-2 text-sm font-semibold tracking-wide">
-                            <div class="flex items-center justify-between w-64 text-white">
-                                <span>เฟเนร์บาห์เช่</span> 
-                                <span class="digital-font font-black text-lg text-orange-400 glow-orange">1</span>
-                            </div>
-                            <div class="flex items-center justify-between w-64 text-zinc-400">
-                                <span>ลีลล์</span> 
-                                <span class="digital-font font-black text-lg">0</span>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="text-zinc-600 hover:text-yellow-400 transition text-xl transform hover:scale-125 duration-200">★</button>
-                </div>
-            </div>
-
-        </main>
+            </main>
+        </div>
     </div>
-
-    <!-- ส่วนท้ายเว็บสไตล์โมเดิร์น -->
-    <footer class="text-center py-8 border-t border-zinc-900 text-zinc-600 text-xs mt-12 bg-black/80 tracking-widest font-light">
-        ⚡ DIGITAL SPORTS MATRIX DASHBOARD &copy; 2026
-    </footer>
 
 </body>
 </html>
