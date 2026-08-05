@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🏆 MATRIX LIVESCORE HUB - ผลบอลสดทุกลีกวันนี้</title>
+    
+    <!-- 🔍 [SEO จุดที่ 1] ตั้งหัวข้อเว็บให้มีคีย์เวิร์ดที่คนชอบค้นหาบน Google -->
+    <title>ผลบอลสดวันนี้ เช็กผลบอลสดทุกลีกทั่วโลกเรียลไทม์ ตารางคะแนนฟุตบอลอัปเดตตลอด 24 ชม. | MATRIX LIVESCORE</title>
+    
+    <!-- 🔍 [SEO จุดที่ 2] คำอธิบายเว็บไซต์ที่จะไปแสดงใต้ลิงก์บน Google เพื่อดึงดูดให้คนอยากคลิกเข้าเว็บ -->
+    <meta name="description" content="เว็บเช็กผลบอลสดวันนี้ ทุกลีกทั่วโลก อัปเดตสกอร์เรียลไทม์ วินาทีต่อวินาที พร้อมระบบเสียงเตือนเวลามีการยิงประตู (Goal Sound) แม่นยำ คมชัด อ่านง่าย โหลดไวที่สุดบนมือถือ">
+    
+    <!-- 🔍 [SEO จุดที่ 3] คีย์เวิร์ดเสริมสำหรับตัวบอตค้นหาข้อมูล -->
+    <meta name="keywords" content="ผลบอลสด, ผลบอลสดวันนี้, เช็กผลบอล, ตารางคะแนน, พรีเมียร์ลีก, ดูบอลสด, บอลวันนี้">
+    
     <style>
-        /* CSS ดีไซน์ฝังในตัว มินิมอล อ่านง่าย สบายตา และไม่มีวันแสดงผลเพี้ยน */
+        /* CSS ดีไซน์ฝังในตัว มินิมอล อ่านง่าย สบายตา และเสถียรที่สุด */
         body {
             background-color: #f8fafc;
             color: #1e293b;
@@ -58,7 +67,7 @@
             height: fit-content;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
-        .sidebar h3 {
+        .sidebar h2 {
             font-size: 14px;
             font-weight: 700;
             color: #475569;
@@ -99,9 +108,6 @@
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
         .content-title {
-            font-size: 17px;
-            font-weight: 700;
-            color: #0f172a;
             margin-top: 0;
             margin-bottom: 20px;
             padding-bottom: 12px;
@@ -109,6 +115,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        /* 🔍 [SEO จุดที่ 4] ใช้แท็ก H1 ครอบหัวข้อหลัก เพื่อบอกให้ Google รู้ว่านี่คือจุดสำคัญที่สุดของหน้าเว็บ */
+        h1.main-title-seo {
+            font-size: 17px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0;
         }
         .widget-render-zone {
             min-height: 600px;
@@ -137,12 +150,11 @@
 
     <div class="main-container">
         
-        <!-- คอลัมน์ซ้าย: แถบปุ่มเมนูที่ผูกคำสั่งกรองชื่อทัวร์นาเมนต์จริงได้อย่างปลอดภัยและเสถียรที่สุด -->
+        <!-- คอลัมน์ซ้าย: แถบปุ่มเมนูสลับคัดกรองทัวร์นาเมนต์ฟุตบอล -->
         <aside class="sidebar">
-            <h3>ลีกยอดนิยมวันนี้</h3>
+            <h2>ลีกยอดนิยมวันนี้</h2>
             <ul class="league-list">
-                <!-- กดคลิกแล้วใช้คำสั่ง JS วิ่งไปพิมพ์ค้นหาชื่อทัวร์นาเมนต์ด้านในของแท้วิดเจ็ตให้ทันที จอไม่ขาวแน่นอน -->
-                <li class="league-item-box active" onclick="filterBroadageLeague('', this, '📢 ตารางคะแนนและผลการแข่งขันสดแบบ Real-time')"><span>🌐 ทุกลีกยอดนิยมวันนี้</span> <span>&gt;</span></li>
+                <li class="league-item-box active" onclick="filterBroadageLeague('', this, '📢 ตารางคะแนนและผลการแข่งขันสดแบบ Real-time ทุกคู่ของวันนี้')"><span>🌐 ทุกลีกยอดนิยมวันนี้</span> <span>&gt;</span></li>
                 <li class="league-item-box" onclick="filterBroadageLeague('Champions League', this, '🏆 ผลบอลสด ยูฟ่า แชมเปียนส์ลีก')"><span>🏆 Champions League</span> <span>&gt;</span></li>
                 <li class="league-item-box" onclick="filterBroadageLeague('Europa League', this, '🇪🇺 ผลบอลสด ยูฟ่า ยูโรปาลีก')"><span>🇪🇺 Europa League</span> <span>&gt;</span></li>
                 <li class="league-item-box" onclick="filterBroadageLeague('Premier League', this, '🏴󠁧󠁢󠁥󠁮󠁧󠁿 ผลบอลสด พรีเมียร์ลีก อังกฤษ')"><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 พรีเมียร์ลีก อังกฤษ</span> <span>&gt;</span></li>
@@ -152,13 +164,12 @@
             </ul>
         </aside>
 
-        <!-- คอลัมน์ขวา: พื้นที่รองรับชุดสคริปต์หลักของคุณในลักษณะสแตติกที่ปลอดภัยที่สุด -->
+        <!-- คอลัมน์ขวา: พื้นที่รองรับชุดสคริปต์หลักของคุณ -->
         <main class="content-area">
             <div class="content-title">
-                <span id="display-title">📢 ตารางคะแนนและผลการแข่งขันสดแบบ Real-time</span>
+                <h1 class="main-title-seo" id="display-title">📢 ตารางคะแนนและผลการแข่งขันสดแบบ Real-time ทุกคู่ของวันนี้</h1>
             </div>
             
-            <!-- กล่องเรนเดอร์สคริปต์ตัวเก่งดั้งเดิมของคุณ โดยห้ามเขียนสคริปต์เคลียร์ทับซ้ำเด็ดขาด -->
             <div class="widget-render-zone">
                 <div id="DOM_element_id_in_your_website_1785962037862"></div>
             </div>
@@ -167,22 +178,22 @@
     </div>
 
     <footer>
-        &copy; 2026 Matrix LiveScore Platform | ข้อมูลแมตช์จริงอัปเดตเรียลไทม์พร้อมระบบเสียงเตือนประตูเปิดใช้งานสมบูรณ์
+        &copy; 2026 Matrix LiveScore Platform | ข้อมูลแมตช์ฟุตบอลจริงอัปเดตเรียลไทม์พร้อมระบบเสียงเตือนประตูเปิดใช้งานสมบูรณ์
     </footer>
 
-    <!-- 🔗 ฝังชุดสคริปต์ดั้งเดิมตัวเก่งของคุณตรงจุดนี้ เพียงครั้งเดียว เพื่อความเสถียรสูงสุด -->
+    <!-- ฝังชุดสคริปต์ดั้งเดิมตัวเก่งของคุณเพื่อดึงข้อมูลสดแม่นยำ -->
     <script>
       (function(b, s, p, o, r, t) {
         b["broadage"] = b["broadage"] || [];
         if (!b["broadage"].length) {
           r = document.createElement(s);
-          t = document.getElementsByTagName(s)[0]; // ฟิกซ์รันสคริปต์ดั้งเดิมให้ถูกต้องเพื่อกู้จอกลางคืนมา
+          t = document.getElementsByTagName(s);
           r.async = true;
           r.src = p;
           t.parentNode.insertBefore(r, t);
         }
         b["broadage"].push({ "bundleId": o.bundleId, "widgets": o.widgets, "accountId": o.accountId });
-      })(window, "script", "//cdn-saas.broadage.com/widgets/loader/loader.js", {
+      })(window, "script", "//://broadage.com", {
         "bundleId": ["all-ls"],
         "accountId": "ebfc2e8b-9fa9-4722-98cf-d81b181eb51d",
         "widgets": {
@@ -203,10 +214,9 @@
       });
     </script>
 
-    <!-- 🧠 ระบบควบคุมการคัดกรองแบบอัจฉริยะภายนอก (สั่งผ่านระบบเสิร์ชภายในตัว Widget) ป้องกันหน้าจอขาวดับ -->
+    <!-- ระบบควบคุมการคัดกรองข้อมูลคู่บอลภายในตัว Widget ของ Broadage ดั้งเดิมอย่างปลอดภัย -->
     <script>
         function filterBroadageLeague(keyword, element, titleText) {
-            // 1. สลับไฮไลท์แถบเมนูข้างสีส้มเวลากดคลิก
             let buttons = document.getElementsByClassName('league-item-box');
             for (let i = 0; i < buttons.length; i++) {
                 buttons[i].classList.remove('active');
@@ -214,31 +224,26 @@
             element.classList.add('active');
             document.getElementById('display-title').innerText = titleText;
 
-            // 2. ใช้เทคนิคขั้นสูงยิงคำสั่งค้นหาไปสั่งช่อง Search ภายในตัววิดเจ็ตของ Broadage โดยตรง
             let widgetMain = document.getElementById('DOM_element_id_in_your_website_1785962037862');
             if (widgetMain) {
-                // มองหาช่องใส่ข้อความหรือแว่นขยายภายในวิดเจ็ตที่เรนเดอร์เสร็จแล้ว
                 let innerInput = widgetMain.querySelector('input[type="text"], .brd-search-input, [class*="search"] input');
-                
                 if (innerInput) {
                     innerInput.value = keyword;
-                    // ยิง Event สั่งให้ตัวแปรในวิดเจ็ตทำงานและคัดกรองข้อมูลคู่บอลทันทีโดยหน้าจอไม่ดับ
                     let inputEvent = new Event('input', { bubbles: true });
                     innerInput.dispatchEvent(inputEvent);
                 } else {
-                    // หากหน้าวิดเจ็ตของทางค่ายมีปุ่มค้นหาแยกย่อย ให้ส่งค่าผ่านทางสแต็กค้นหาสากล
                     try {
                         let searchInput = document.querySelector('.brd-search-box input');
                         if(searchInput) {
                             searchInput.value = keyword;
                             searchInput.dispatchEvent(new Event('input', { bubbles: true }));
                         }
-                    } catch(e) { console.log("กำลังเชื่อมระบบคัดกรอง..."); }
+                    } catch(e) { console.log("กำลังกรองข้อมูล..."); }
                 }
             }
         }
 
-        // ระบบกล่องค้นหารายชื่อเมนูในแถบข้างซ้ายมือแบบไว
         function searchLeague() {
             let input = document.getElementById('teamSearch').value.toLowerCase();
-let items = document.getElementsByClassName('league-item-box');for (let i = 0; i < items.length; i++) {if (items[i].innerText.toLowerCase().includes(input)) {items[i].style.display = "flex";} else {items[i].style.display = "none";}}}
+            let items = document.getElementsByClassName('league-item-box');
+for (let i = 0; i < items.length; i++) {if (items[i].innerText.toLowerCase().includes(input)) {items[i].style.display = "flex";} else {items[i].style.display = "none";}}}
