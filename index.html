@@ -3,235 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ LIVE.SPORTS CYBERPUNK</title>
+    <title>⚡ Real-time LiveScore Center</title>
     <style>
-        /* สไตล์หลักฝังในตัวเพื่อป้องกันระบบไม่โหลดโครงสร้าง */
-        body {
-            background-color: #09090b;
-            color: #f4f4f5;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
+        body { 
+            background-color: #09090b; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            color: #ffffff;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        /* แถบเมนูด้านบนแบบดุดัน */
-        nav {
-            background-color: #18181b;
-            border-bottom: 2px solid #27272a;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            items-center: center;
-        }
-        .logo {
-            font-size: 28px;
-            font-weight: 900;
-            color: #f97316;
-            text-transform: uppercase;
+        .web-header { 
+            background-color: #18181b; 
+            color: #f97316; 
+            padding: 20px; 
+            text-align: center; 
+            font-size: 26px; 
+            font-weight: 900; 
+            border-bottom: 3px solid #27272a;
             letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+            text-shadow: 0 0 10px rgba(249, 115, 22, 0.4);
         }
-        /* เมนูการจัดหน้าแบบ 2 คอลัมน์กว้างใหญ่ */
-        .main-layout {
-            display: grid;
-            grid-template-columns: 1fr 3fr;
-            gap: 25px;
-            margin-top: 25px;
-        }
-        /* กล่องซ้าย - รายชื่อทีม */
-        .sidebar {
-            background-color: #18181b;
+        .score-container { 
+            max-width: 1200px; 
+            margin: 25px auto; 
+            padding: 5px; 
+            background-color: #18181b; 
+            border-radius: 16px; 
             border: 1px solid #27272a;
-            border-radius: 16px;
-            padding: 20px;
-            height: fit-content;
-        }
-        .sidebar h3 {
-            color: #f97316;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 0;
-            border-left: 4px solid #f97316;
-            padding-left: 10px;
-        }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .sidebar li {
-            padding: 12px 10px;
-            border-radius: 8px;
-            margin-bottom: 5px;
-            font-size: 14px;
-            transition: 0.3s;
-            cursor: pointer;
-            background-color: #202024;
-        }
-        .sidebar li:hover {
-            background-color: #27272a;
-            color: #ffffff;
-        }
-        /* กล่องขวา - ตารางคะแนนและผลการแข่งขันสด */
-        .content-area {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .league-card {
-            background-color: #18181b;
-            border: 1px solid #27272a;
-            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
-        .league-header {
-            background: linear-gradient(90deg, #27272a, #18181b);
-            padding: 15px 20px;
-            font-weight: bold;
-            font-size: 16px;
-            border-bottom: 1px solid #27272a;
-            color: #ffffff;
-        }
-        .match-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #27272a;
-            transition: 0.3s;
-        }
-        .match-row:hover {
-            background-color: #202024;
-        }
-        /* ป้ายบอกสถานะไลฟ์นีออนเรืองแสง */
-        .live-tag {
-            background-color: #052e16;
-            color: #4ade80;
-            border: 1px solid #14532d;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: bold;
-            box-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
-        }
-        .time-tag {
-            background-color: #27272a;
-            color: #a1a1aa;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-        }
-        .team-score-zone {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            width: 250px;
-        }
-        .team-line {
-            display: flex;
-            justify-content: space-between;
-            font-size: 15px;
-            font-weight: 600;
-        }
-        .score-active {
-            color: #f97316;
-            font-weight: 900;
-            font-size: 18px;
-            text-shadow: 0 0 8px rgba(249, 115, 22, 0.4);
-        }
-        .fav-star {
-            color: #52525b;
-            font-size: 22px;
-            cursor: pointer;
-            transition: 0.2s;
-            background: none;
+        iframe {
+            width: 100%;
+            height: 850px;
             border: none;
-        }
-        .fav-star:hover {
-            color: #eab308;
-            transform: scale(1.2);
+            background-color: #18181b;
         }
     </style>
 </head>
 <body>
 
-    <!-- แถบเมนูด้านบนสุด -->
-    <nav>
-        <div class="logo">LIVE.SPORTS</div>
-        <div style="color: #a1a1aa; font-size: 14px; font-weight: bold;">🕒 ระบบอัปเดตออโต้รัน</div>
-    </nav>
+    <div class="web-header">⚡ REAL-TIME LIVESCORE MATRIX</div>
 
-    <div class="container">
-        <!-- แบ่งสัดส่วน 2 ฝั่งซ้ายขวา -->
-        <div class="main-layout">
-            
-            <!-- ด้านซ้าย: รายชื่อทีม -->
-            <aside class="sidebar">
-                <h3>สโมสรยอดนิยม</h3>
-                <ul>
-                    <li>🔴 แมนเชสเตอร์ ยูไนเต็ด</li>
-                    <li>🔴 ลิเวอร์พูล</li>
-                    <li>🔴 อาร์เซนอล</li>
-                    <li>🔵 แมนเชสเตอร์ ซิตี้</li>
-                    <li>⚪ เรอัล มาดริด</li>
-                </ul>
-            </aside>
-
-            <!-- ด้านขวา: กล่องผลบอลสด -->
-            <main class="content-area">
-                
-                <div class="league-card">
-                    <div class="league-header">🏆 Champions League Qualification</div>
-                    
-                    <!-- แมตช์ที่ 1 -->
-                    <div class="match-row">
-                        <div style="display: flex; align-items: center; gap: 20px;">
-                            <span class="live-tag">LIVE 52'</span>
-                            <div class="team-score-zone">
-                                <div class="team-line" style="color: #fff;"><span>AGF อาร์ฮุส</span> <span class="score-active">1</span></div>
-                                <div class="team-line" style="color: #a1a1aa;"><span>ซาบาห์ บากู</span> <span>0</span></div>
-                            </div>
-                        </div>
-                        <button class="fav-star">★</button>
-                    </div>
-
-                    <!-- แมตช์ที่ 2 -->
-                    <div class="match-row">
-                        <div style="display: flex; align-items: center; gap: 20px;">
-                            <span class="live-tag">LIVE 22'</span>
-                            <div class="team-score-zone">
-                                <div class="team-line" style="color: #fff;"><span>เฟเนร์บาห์เช่</span> <span class="score-active">1</span></div>
-                                <div class="team-line" style="color: #a1a1aa;"><span>ลีลล์</span> <span>0</span></div>
-                            </div>
-                        </div>
-                        <button class="fav-star">★</button>
-                    </div>
-                </div>
-
-                <div class="league-card">
-                    <div class="league-header">⚽ Europa League Qualification</div>
-                    
-                    <!-- แมตช์ที่ 3 -->
-                    <div class="match-row">
-                        <div style="display: flex; align-items: center; gap: 20px;">
-                            <span class="time-tag">23:00</span>
-                            <div class="team-score-zone">
-                                <div class="team-line" style="color: #e4e4e7;"><span>อาแจกซ์ อัมสเตอร์ดัม</span> <span>-</span></div>
-                                <div class="team-line" style="color: #e4e4e7;"><span>พานาธิไนกอส</span> <span>-</span></div>
-                            </div>
-                        </div>
-                        <button class="fav-star">★</button>
-                    </div>
-                </div>
-
-            </main>
-        </div>
+    <div class="score-container">
+        <!-- ระบบดึงข้อมูลผลบอลสดเรียลไทม์อัปเดตอัตโนมัติ -->
+        <iframe src="https://livescore.com"></iframe>
     </div>
 
 </body>
