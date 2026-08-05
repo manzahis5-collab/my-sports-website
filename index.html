@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Hub - เว็บไซต์ข้อมูลกีฬา</title>
+    <!-- นำเข้า Tailwind CSS สำหรับจัดหน้าตาให้สวยงาม -->
+    <script src="https://tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+    <!-- แถบเมนูด้านบน -->
+    <nav class="bg-gray-800 p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-yellow-500">🏆 SportsHub</h1>
+            <div class="space-x-4">
+                <a href="#" class="hover:text-yellow-400">หน้าแรก</a>
+                <a href="#" class="hover:text-yellow-400">ฟุตบอล</a>
+                <a href="#" class="hover:text-yellow-400">บาสเกตบอล</a>
+                <a href="#admin" class="bg-yellow-600 px-3 py-1.5 rounded hover:bg-yellow-500 transition">เข้าสู่หลังบ้าน</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ส่วนเนื้อหาหลัก -->
+    <main class="container mx-auto my-8 p-4">
+        <!-- สรุปผลการแข่งขันล่าสุด -->
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">🔴 ผลการแข่งขันล่าสุด</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- การแข่งขันที่ 1 -->
+                <div class="bg-gray-800 p-4 rounded-lg flex justify-between items-center shadow">
+                    <span class="font-medium">ทีม FC Barcelona</span>
+                    <span class="bg-yellow-500 text-gray-900 px-3 py-1 rounded font-bold">2 - 1</span>
+                    <span class="font-medium">ทีม Real Madrid</span>
+                </div>
+                <!-- การแข่งขันที่ 2 -->
+                <div class="bg-gray-800 p-4 rounded-lg flex justify-between items-center shadow">
+                    <span class="font-medium">ทีม LA Lakers</span>
+                    <span class="bg-yellow-500 text-gray-900 px-3 py-1 rounded font-bold">102 - 98</span>
+                    <span class="font-medium">ทีม GS Warriors</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ตารางคะแนน -->
+        <section>
+            <h2 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">📊 ตารางคะแนนรวม</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left bg-gray-800 rounded-lg overflow-hidden shadow">
+                    <thead class="bg-gray-700 text-yellow-400">
+                        <tr>
+                            <th class="p-3">อันดับ</th>
+                            <th class="p-3">ชื่อทีม</th>
+                            <th class="p-3">แข่ง</th>
+                            <th class="p-3">ชนะ</th>
+                            <th class="p-3">แพ้</th>
+                            <th class="p-3">คะแนนรวม</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-700">
+                        <tr>
+                            <td class="p-3 font-bold text-center">1</td>
+                            <td class="p-3">ทีม FC Barcelona</td>
+                            <td class="p-3">10</td>
+                            <td class="p-3">8</td>
+                            <td class="p-3">2</td>
+                            <td class="p-3 text-yellow-400 font-bold">24</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-bold text-center">2</td>
+                            <td class="p-3">ทีม LA Lakers</td>
+                            <td class="p-3">10</td>
+                            <td class="p-3">7</td>
+                            <td class="p-3">3</td>
+                            <td class="p-3 text-yellow-400 font-bold">21</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- ส่วนท้ายเว็บ -->
+    <footer class="text-center p-4 bg-gray-800 text-gray-400 mt-12 text-sm">
+        &copy; 2026 SportsHub Dashboard. สงวนลิขสิทธิ์ข้อมูลกีฬาเพื่อความบันเทิงและการศึกษาเท่านั้น
+    </footer>
+
+</body>
+</html>
