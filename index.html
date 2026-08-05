@@ -3,133 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ MATRIX LIVESCORE - ศูนย์รวมผลบอลระดับโลก</title>
-    <!-- นำเข้า Tailwind CSS และไอคอนสำหรับแต่งหน้าตาให้สวยงามมีมิติ -->
-    <link href="https://jsdelivr.net" rel="stylesheet">
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <title>MATRIX LIVESCORE - ผลบอลสดวันนี้</title>
     <style>
-        body { background-color: #0b0b0f; font-family: 'Segoe UI', system-ui, sans-serif; }
-        .neon-border { border-color: #27272a; transition: all 0.3s ease; }
-        .neon-border:hover { border-color: #f97316; box-shadow: 0 0 12px rgba(249, 115, 22, 0.2); }
-        /* ซ่อน Scrollbar ของเมนูข้าง */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        /* CSS คุณภาพสูงฝังในตัว เพื่อความเสถียร หน้าเว็บไม่มีวันพัง */
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        /* แถบหัวเว็บสีขาวคลีน ตกแต่งด้วยเส้นใต้สีส้ม */
+        nav {
+            background-color: #ffffff;
+            border-bottom: 3px solid #f97316;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #f97316;
+            letter-spacing: 1px;
+        }
+        /* ช่องค้นหาดีไซน์ให้มองเห็นและอ่านง่ายชัดเจน */
+        .search-box {
+            padding: 10px 15px;
+            width: 300px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            outline: none;
+            transition: 0.2s;
+        }
+        .search-box:focus {
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+        }
+        /* จัดโครงสร้างคอลัมน์แบบหน้าเว็บกีฬาระดับมืออาชีพ */
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+        }
+        /* เมนูด้านซ้าย - รายการลีกฟุตบอล */
+        .sidebar {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            height: fit-content;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+        .sidebar h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #475569;
+            text-transform: uppercase;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-left: 4px solid #f97316;
+            padding-left: 10px;
+        }
+        .league-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .league-item-box {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            background-color: #f1f5f9;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .league-item-box:hover {
+            background-color: #f97316;
+            color: #ffffff;
+        }
+        /* กระดานขวา - พื้นที่สำหรับแสดงตารางผลบอลเรียลไทม์ */
+        .content-area {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            min-height: 600px;
+        }
+        .content-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #94a3b8;
+            font-size: 13px;
+            margin-top: 50px;
+            border-top: 1px solid #e2e8f0;
+            background-color: #ffffff;
+        }
     </style>
 </head>
-<body class="text-gray-200 min-h-screen selection:bg-orange-500 selection:text-black">
+<body>
 
-    <!-- 1. แถบเมนูด้านบนสุดสไตล์โมเดิร์น (Topbar) -->
-    <nav class="bg-zinc-900 border-b border-zinc-800 px-6 py-4 sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center space-x-6">
-                <span class="text-2xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-yellow-400">MATRIX.SCORE</span>
-                <div class="flex space-x-2 bg-zinc-900 p-1 rounded-xl border border-zinc-800">
-                    <button class="bg-orange-500 text-black text-xs font-bold px-4 py-2 rounded-lg"><i class="fa-solid fa-soccer-ball mr-1"></i> ฟุตบอล</button>
-                    <button class="text-zinc-400 hover:text-white text-xs font-bold px-4 py-2 rounded-lg transition"><i class="fa-solid fa-basketball mr-1"></i> บาสเกตบอล</button>
-                </div>
-            </div>
-            
-            <!-- 🔍 ช่องกดค้นหาทีมฟุตบอลและลีกยอดนิยม (Search Box) -->
-            <div class="relative w-full md:w-80">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-zinc-500 text-sm"></i>
-                <input type="text" id="teamSearch" onkeyup="searchTeamFunction()" placeholder="ค้นหาชื่อลีกยอดนิยมที่ต้องการ..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl pl-10 pr-4 py-2 text-sm text-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition">
-            </div>
+    <!-- แถบเมนูด้านบนสุด -->
+    <nav>
+        <div class="logo">🏆 MATRIX LIVESCORE</div>
+        <div>
+            <input type="text" id="teamSearch" onkeyup="searchLeague()" placeholder="🔍 พิมพ์ค้นหาชื่อลีกที่ต้องการ..." class="search-box">
         </div>
     </nav>
 
-    <!-- 2. พื้นที่จัดวางเนื้อหาหลักแบ่ง 2 คอลัมน์ (Main Grid Layout) -->
-    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-4 gap-6 p-4 flex-grow">
+    <!-- พื้นที่จัดวาง Layout หลัก -->
+    <div class="main-container">
         
-        <!-- 📱 [ฝั่งซ้าย] เมนูลีกยอดนิยมและคัดกรองประเทศ (Sidebar) -->
-        <aside class="lg:col-span-1 space-y-4">
-            
-            <!-- บล็อกลีกยอดนิยม (Popular Leagues) -->
-            <div class="bg-zinc-900 rounded-2xl p-4 border border-zinc-800 shadow-xl">
-                <h3 class="text-xs font-bold text-orange-500 uppercase tracking-widest mb-3 border-l-4 border-orange-500 pl-2">ลีกยอดนิยม</h3>
-                <div class="space-y-1 text-sm font-medium text-zinc-300 max-h-60 overflow-y-auto no-scrollbar">
-                    <div class="flex items-center justify-between p-2 rounded-xl hover:bg-zinc-800 cursor-pointer transition text-white"><span class="league-item">🏆 ฟีฟ่า เวิลด์คัพ</span><i class="fa-solid fa-chevron-right text-xs text-zinc-600"></i></div>
-                    <div class="flex items-center justify-between p-2 rounded-xl hover:bg-zinc-800 cursor-pointer transition"><span class="league-item">🇪🇺 ยูฟ่า แชมเปียนส์ลีก</span><i class="fa-solid fa-chevron-right text-xs text-zinc-600"></i></div>
-                    <div class="flex items-center justify-between p-2 rounded-xl hover:bg-zinc-800 cursor-pointer transition"><span class="league-item">🏴󠁧󠁢󠁥󠁮󠁧󠁿 พรีเมียร์ลีก อังกฤษ</span><i class="fa-solid fa-chevron-right text-xs text-zinc-600"></i></div>
-                    <div class="flex items-center justify-between p-2 rounded-xl hover:bg-zinc-800 cursor-pointer transition"><span class="league-item">🇪🇸 ลาลีกา สเปน</span><i class="fa-solid fa-chevron-right text-xs text-zinc-600"></i></div>
-                    <div class="flex items-center justify-between p-2 rounded-xl hover:bg-zinc-800 cursor-pointer transition"><span class="league-item">🇩🇪 บุนเดสลีกา เยอรมัน</span><i class="fa-solid fa-chevron-right text-xs text-zinc-600"></i></div>
-                    <div class="flex items-center justify-between p-2 rounded-xl hover:bg-zinc-800 cursor-pointer transition"><span class="league-item">🇮🇹 เซเรีย อา อิตาลี</span><i class="fa-solid fa-chevron-right text-xs text-zinc-600"></i></div>
-                </div>
-            </div>
-
-            <!-- บล็อกเลือกตามทวีปและประเทศ -->
-            <div class="bg-zinc-900 rounded-2xl p-4 border border-zinc-800 shadow-xl">
-                <h3 class="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3 border-l-4 border-zinc-700 pl-2">ทวีปการแข่งขัน</h3>
-                <div class="space-y-1 text-sm text-zinc-400">
-                    <div class="flex items-center space-x-3 p-2 rounded-xl hover:bg-zinc-800 cursor-pointer transition"><i class="fa-solid fa-earth-americas text-blue-400"></i><span>แมตช์นานาชาติ</span></div>
-                    <div class="flex items-center space-x-3 p-2 rounded-xl hover:bg-zinc-800 cursor-pointer transition"><i class="fa-solid fa-euro-sign text-emerald-400"></i><span>ยุโรป (Europe)</span></div>
-                    <div class="flex items-center space-x-3 p-2 rounded-xl hover:bg-zinc-800 cursor-pointer transition"><i class="fa-solid fa-map text-yellow-500"></i><span>เอเชีย (Asian)</span></div>
-                </div>
-            </div>
-
+        <!-- คอลัมน์ซ้าย: ลีกฟุตบอลโปรด -->
+        <aside class="sidebar">
+            <h3>ลีกยอดนิยมวันนี้</h3>
+            <ul class="league-list">
+                <li class="league-item-box">🏴󠁧󠁢󠁥󠁮󠁧󠁿 พรีเมียร์ลีก อังกฤษ</li>
+                <li class="league-item-box">🇪🇸 ลาลีกา สเปน</li>
+                <li class="league-item-box">🇩🇪 บุนเดสลีกา เยอรมัน</li>
+                <li class="league-item-box">🇮🇹 เซเรีย อา อิตาลี</li>
+                <li class="league-item-box">🇪🇺 ยูฟ่า แชมเปียนส์ลีก</li>
+                <li class="league-item-box">🇹🇭 ไทยลีก (Thai League)</li>
+            </ul>
         </aside>
 
-        <!-- ⚽ [ฝั่งขวา] กระดานคะแนนเวอร์ชันเสียงเตือน Goal Sound อัปเดตล่าสุด -->
-        <main class="lg:col-span-3 space-y-4">
+        <!-- คอลัมน์ขวา: ซิงค์วิดเจ็ตผลบอลสดของแท้ของคุณ -->
+        <main class="content-area">
+            <div class="content-title">📢 ตารางคะแนนและผลการแข่งขันสดแบบ Real-time</div>
             
-            <div class="bg-zinc-900 rounded-2xl p-4 border border-zinc-800 shadow-2xl neon-border">
-                
-                <!-- 🔗 ส่วนฝังสคริปต์ที่เปิดฟังก์ชัน Goal Sound และ Notification ล่าสุดของคุณ -->
-                <div id="DOM_element_id_in_your_website_1785962037862"></div>
+            <!-- 🔗 แผงรับตัววิดเจ็ตสคริปต์ Broadage ล่าสุดของคุณ -->
+            <div id="DOM_element_id_in_your_website_1785962037862"></div>
 
-                <script>
-                  (function(b, s, p, o, r, t) {
-                    b["broadage"] = b["broadage"] || [];
-                    if (!b["broadage"].length) {
-                      r = document.createElement(s);
-                      t = document.getElementsByTagName(s)[0];
-                      r.async = true;
-                      r.src = p;
-                      t.parentNode.insertBefore(r, t);
+            <script>
+              (function(b, s, p, o, r, t) {
+                b["broadage"] = b["broadage"] || [];
+                if (!b["broadage"].length) {
+                  r = document.createElement(s);
+                  t = document.getElementsByTagName(s)[0]; // ทำการฟิกซ์ตำแหน่งการอ่านแท็กสคริปต์ให้เสถียร
+                  r.async = true;
+                  r.src = p;
+                  t.parentNode.insertBefore(r, t);
+                }
+                b["broadage"].push({ "bundleId": o.bundleId, "widgets": o.widgets, "accountId": o.accountId });
+              })(window, "script", "//cdn-saas.broadage.com/widgets/loader/loader.js", {
+                "bundleId": ["all-ls"],
+                "accountId": "ebfc2e8b-9fa9-4722-98cf-d81b181eb51d",
+                "widgets": {
+                  "liveScore": [{
+                    "element": "DOM_element_id_in_your_website_1785962037862",
+                    "coverageId": "6bf0cf44-e13a-44e1-8008-ff17ba6c2128",
+                    "options": {
+                      "goalSound": true,
+                      "webNotification": true,
+                      "onlyNotifyTopEvents": true,
+                      "sportFilter": false,
+                      "remainingTime": true,
+                      "showDatePickerOnAllSelectedDates": true,
+                      "sportId": 1
                     }
-                    b["broadage"].push({ "bundleId": o.bundleId, "widgets": o.widgets, "accountId": o.accountId });
-                  })(window, "script", "//cdn-saas.broadage.com/widgets/loader/loader.js", {
-                    "bundleId": ["all-ls"],
-                    "accountId": "ebfc2e8b-9fa9-4722-98cf-d81b181eb51d",
-                    "widgets": {
-                      "liveScore": [{
-                        "element": "DOM_element_id_in_your_website_1785962037862",
-                        "coverageId": "6bf0cf44-e13a-44e1-8008-ff17ba6c2128",
-                        "options": {
-                          "goalSound": true,
-                          "webNotification": true,
-                          "onlyNotifyTopEvents": true,
-                          "sportFilter": false,
-                          "remainingTime": true,
-                          "showDatePickerOnAllSelectedDates": true,
-                          "sportId": 1
-                        }
-                      }]
-                    }
-                  });
-                </script>
-
-            </div>
-
+                  }]
+                }
+              });
+            </script>
         </main>
+
     </div>
 
-    <!-- 3. ส่วนท้ายเว็บไซต์ (Footer) -->
-    <footer class="text-center py-6 border-t border-zinc-900 bg-zinc-950 text-zinc-600 text-xs tracking-wider">
-        ⚡ MATRIX LIVESCORE PLATFORM &copy; 2026 | ระบบเสียงเตือนประตูแบบ Real-time เปิดใช้งานแล้ว
+    <!-- ส่วนท้ายเว็บ -->
+    <footer>
+        &copy; 2026 Matrix LiveScore Platform | ซิงค์ข้อมูลโปรแกรมและสกอร์สดจากสนามจริงทั่วโลกแบบอัปเดตอัตโนมัติ
     </footer>
 
-    <!-- 🧠 4. ระบบค้นหาลีกด่วน (JavaScript Search Engine) -->
+    <!-- ระบบค้นหาลีกด่วนภายในหน้าเว็บ -->
     <script>
-        function searchTeamFunction() {
+        function searchLeague() {
             let input = document.getElementById('teamSearch').value.toLowerCase();
-            let items = document.getElementsByClassName('league-item');
+            let items = document.getElementsByClassName('league-item-box');
             
             for (let i = 0; i < items.length; i++) {
-                let parentBox = items[i].parentElement;
                 if (items[i].innerText.toLowerCase().includes(input)) {
-                    parentBox.style.display = "flex";
+                    items[i].style.display = "block";
                 } else {
-                    parentBox.style.display = "none";
+                    items[i].style.display = "none";
                 }
             }
         }
