@@ -16,7 +16,7 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="text-gray-200 min-h-screen flex flex-col">
+<body class="text-gray-200 min-h-screen selection:bg-orange-500 selection:text-black">
 
     <!-- 1. แถบเมนูด้านบนสุดสไตล์โมเดิร์น (Topbar) -->
     <nav class="bg-zinc-900 border-b border-zinc-800 px-6 py-4 sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
@@ -32,7 +32,7 @@
             <!-- 🔍 ช่องกดค้นหาทีมฟุตบอลและลีกยอดนิยม (Search Box) -->
             <div class="relative w-full md:w-80">
                 <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-zinc-500 text-sm"></i>
-                <input type="text" id="teamSearch" onkeyup="searchTeamFunction()" placeholder="ค้นหาทีม หรือชื่อลีกที่ต้องการ..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl pl-10 pr-4 py-2 text-sm text-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition">
+                <input type="text" id="teamSearch" onkeyup="searchTeamFunction()" placeholder="ค้นหาชื่อลีกยอดนิยมที่ต้องการ..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl pl-10 pr-4 py-2 text-sm text-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition">
             </div>
         </div>
     </nav>
@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <!-- บล็อกเลือกตามทวีปและประเทศ (Other Leagues) -->
+            <!-- บล็อกเลือกตามทวีปและประเทศ -->
             <div class="bg-zinc-900 rounded-2xl p-4 border border-zinc-800 shadow-xl">
                 <h3 class="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3 border-l-4 border-zinc-700 pl-2">ทวีปการแข่งขัน</h3>
                 <div class="space-y-1 text-sm text-zinc-400">
@@ -68,21 +68,14 @@
 
         </aside>
 
-        <!-- ⚽ [ฝั่งขวา] กระดานคะแนนและกล่องรายงานผลเรียลไทม์จริง (Live Stream Content) -->
+        <!-- ⚽ [ฝั่งขวา] กระดานคะแนนเวอร์ชันเสียงเตือน Goal Sound อัปเดตล่าสุด -->
         <main class="lg:col-span-3 space-y-4">
             
             <div class="bg-zinc-900 rounded-2xl p-4 border border-zinc-800 shadow-2xl neon-border">
-                <!-- แถบควบคุมสถานะย่อย -->
-                <div class="flex items-center justify-between border-b border-zinc-800 pb-3 mb-4 text-xs font-bold text-zinc-400">
-                    <div class="flex space-x-4">
-                        <span class="text-orange-500 cursor-pointer border-b border-orange-500 pb-1">ทั้งหมดวันนี้</span>
-                        <span class="hover:text-white cursor-pointer transition"><i class="fa-solid fa-circle-dot text-red-500 text-[10px] mr-1 animate-pulse"></i> ไลฟ์สดอยู่</span>
-                        <span class="hover:text-white cursor-pointer transition">จบการแข่งขัน</span>
-                    </div>
-                </div>
-
-                <!-- 🔗 บล็อกระบบดึงฐานข้อมูลจริง Real-time ของ Broadage Sports -->
+                
+                <!-- 🔗 ส่วนฝังสคริปต์ที่เปิดฟังก์ชัน Goal Sound และ Notification ล่าสุดของคุณ -->
                 <div id="DOM_element_id_in_your_website_1785962037862"></div>
+
                 <script>
                   (function(b, s, p, o, r, t) {
                     b["broadage"] = b["broadage"] || [];
@@ -94,7 +87,7 @@
                       t.parentNode.insertBefore(r, t);
                     }
                     b["broadage"].push({ "bundleId": o.bundleId, "widgets": o.widgets, "accountId": o.accountId });
-                  })(window, "script", "//://broadage.com", {
+                  })(window, "script", "//cdn-saas.broadage.com/widgets/loader/loader.js", {
                     "bundleId": ["all-ls"],
                     "accountId": "ebfc2e8b-9fa9-4722-98cf-d81b181eb51d",
                     "widgets": {
@@ -102,7 +95,12 @@
                         "element": "DOM_element_id_in_your_website_1785962037862",
                         "coverageId": "6bf0cf44-e13a-44e1-8008-ff17ba6c2128",
                         "options": {
+                          "goalSound": true,
+                          "webNotification": true,
+                          "onlyNotifyTopEvents": true,
                           "sportFilter": false,
+                          "remainingTime": true,
+                          "showDatePickerOnAllSelectedDates": true,
                           "sportId": 1
                         }
                       }]
@@ -117,10 +115,10 @@
 
     <!-- 3. ส่วนท้ายเว็บไซต์ (Footer) -->
     <footer class="text-center py-6 border-t border-zinc-900 bg-zinc-950 text-zinc-600 text-xs tracking-wider">
-        ⚡ MATRIX LIVESCORE PLATFORM &copy; 2026 | ดึงข้อมูลสนามสดอัตโนมัติรอบโลก
+        ⚡ MATRIX LIVESCORE PLATFORM &copy; 2026 | ระบบเสียงเตือนประตูแบบ Real-time เปิดใช้งานแล้ว
     </footer>
 
-    <!-- 🧠 4. ระบบคำสั่งเปิดปิดและค้นหาทีมด่วนอัจฉริยะ (JavaScript Engine) -->
+    <!-- 🧠 4. ระบบค้นหาลีกด่วน (JavaScript Search Engine) -->
     <script>
         function searchTeamFunction() {
             let input = document.getElementById('teamSearch').value.toLowerCase();
