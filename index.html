@@ -4,154 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 🔍 [SEO จุดที่ 1] ตั้งหัวข้อเว็บให้มีคีย์เวิร์ดที่คนชอบค้นหาบน Google -->
+    <!-- 🔍 ฝังรหัสแท็กยืนยันสิทธิ์ความเป็นเจ้าของเว็บบนระบบ Google Search Console สำเร็จ -->
+    <meta name="google-site-verification" content="WOVO0j_rsNjak__nLoIjjbOrKtQMo8MSdTe6xSTkMhc" />
+    
     <title>ผลบอลสดวันนี้ เช็กผลบอลสดทุกลีกทั่วโลกเรียลไทม์ ตารางคะแนนฟุตบอลอัปเดตตลอด 24 ชม. | MATRIX LIVESCORE</title>
-    
-    <!-- 🔍 [SEO จุดที่ 2] คำอธิบายเว็บไซต์ที่จะไปแสดงใต้ลิงก์บน Google เพื่อดึงดูดให้คนอยากคลิกเข้าเว็บ -->
     <meta name="description" content="เว็บเช็กผลบอลสดวันนี้ ทุกลีกทั่วโลก อัปเดตสกอร์เรียลไทม์ วินาทีต่อวินาที พร้อมระบบเสียงเตือนเวลามีการยิงประตู (Goal Sound) แม่นยำ คมชัด อ่านง่าย โหลดไวที่สุดบนมือถือ">
-    
-    <!-- 🔍 [SEO จุดที่ 3] คีย์เวิร์ดเสริมสำหรับตัวบอตค้นหาข้อมูล -->
     <meta name="keywords" content="ผลบอลสด, ผลบอลสดวันนี้, เช็กผลบอล, ตารางคะแนน, พรีเมียร์ลีก, ดูบอลสด, บอลวันนี้">
     
     <style>
-        /* CSS ดีไซน์ฝังในตัว มินิมอล อ่านง่าย สบายตา และเสถียรที่สุด */
-        body {
-            background-color: #f8fafc;
-            color: #1e293b;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        nav {
-            background-color: #ffffff;
-            border-bottom: 3px solid #f97316;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: #f97316;
-            letter-spacing: 1px;
-        }
-        .search-box {
-            padding: 10px 15px;
-            width: 300px;
-            border: 2px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            outline: none;
-            transition: 0.2s;
-        }
-        .search-box:focus {
-            border-color: #f97316;
-            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
-        }
-        .main-container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 290px 1fr;
-            gap: 30px;
-        }
-        .sidebar {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 20px;
-            height: fit-content;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-        }
-        .sidebar h2 {
-            font-size: 14px;
-            font-weight: 700;
-            color: #475569;
-            text-transform: uppercase;
-            margin-top: 0;
-            margin-bottom: 15px;
-            border-left: 4px solid #f97316;
-            padding-left: 10px;
-        }
-        .league-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .league-item-box {
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #334155;
-            background-color: #f1f5f9;
-            cursor: pointer;
-            transition: 0.2s;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .league-item-box:hover, .league-item-box.active {
-            background-color: #f97316;
-            color: #ffffff;
-        }
-        .content-area {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-        }
-        .content-title {
-            margin-top: 0;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #f1f5f9;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        /* 🔍 [SEO จุดที่ 4] ใช้แท็ก H1 ครอบหัวข้อหลัก เพื่อบอกให้ Google รู้ว่านี่คือจุดสำคัญที่สุดของหน้าเว็บ */
-        h1.main-title-seo {
-            font-size: 17px;
-            font-weight: 700;
-            color: #0f172a;
-            margin: 0;
-        }
-        .widget-render-zone {
-            min-height: 600px;
-            width: 100%;
-        }
-        footer {
-            text-align: center;
-            padding: 25px;
-            color: #94a3b8;
-            font-size: 13px;
-            margin-top: 50px;
-            border-top: 1px solid #e2e8f0;
-            background-color: #ffffff;
-        }
+        body { background-color: #f8fafc; color: #1e293b; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+        nav { background-color: #ffffff; border-bottom: 3px solid #f97316; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .logo { font-size: 24px; font-weight: 800; color: #f97316; letter-spacing: 1px; }
+        .search-box { padding: 10px 15px; width: 300px; border: 2px solid #cbd5e1; border-radius: 8px; font-size: 14px; font-weight: 500; outline: none; transition: 0.2s; }
+        .search-box:focus { border-color: #f97316; box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1); }
+        .main-container { max-width: 1200px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: 290px 1fr; gap: 30px; }
+        .sidebar { background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; height: fit-content; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .sidebar h2 { font-size: 14px; font-weight: 700; color: #475569; text-transform: uppercase; margin-top: 0; margin-bottom: 15px; border-left: 4px solid #f97316; padding-left: 10px; }
+        .league-list { list-style: none; padding: 0; margin: 0; }
+        .league-item-box { padding: 12px 15px; border-radius: 8px; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: #334155; background-color: #f1f5f9; cursor: pointer; transition: 0.2s; display: flex; justify-content: space-between; align-items: center; }
+        .league-item-box:hover, .league-item-box.active { background-color: #f97316; color: #ffffff; }
+        .content-area { background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .content-title { margin-top: 0; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
+        h1.main-title-seo { font-size: 17px; font-weight: 700; color: #0f172a; margin: 0; }
+        .widget-render-zone { min-height: 600px; width: 100%; }
+        footer { text-align: center; padding: 25px; color: #94a3b8; font-size: 13px; margin-top: 50px; border-top: 1px solid #e2e8f0; background-color: #ffffff; }
     </style>
 </head>
 <body>
 
     <!-- แถบเมนูด้านบนสุด -->
-    <meta name="google-site-verification" content="WOVO0j_rsNjak__nLoIjjbOrKtQMo8MSdTe6xSTkMhc" />
     <nav>
         <div class="logo">🏆 MATRIX LIVESCORE</div>
-        <div>
-            <input type="text" id="teamSearch" onkeyup="searchLeague()" placeholder="🔍 พิมพ์ค้นหาชื่อลีกในแถบเมนูข้าง..." class="search-box">
-        </div>
+        <div><input type="text" id="teamSearch" onkeyup="searchLeague()" placeholder="🔍 พิมพ์ค้นหาชื่อลีกในแถบเมนูข้าง..." class="search-box"></div>
     </nav>
 
     <div class="main-container">
-        
-        <!-- คอลัมน์ซ้าย: แถบปุ่มเมนูสลับคัดกรองทัวร์นาเมนต์ฟุตบอล -->
+        <!-- แถบซ้ายมือ -->
         <aside class="sidebar">
             <h2>ลีกยอดนิยมวันนี้</h2>
             <ul class="league-list">
@@ -165,33 +53,26 @@
             </ul>
         </aside>
 
-        <!-- คอลัมน์ขวา: พื้นที่รองรับชุดสคริปต์หลักของคุณ -->
+        <!-- กระดานขวามือ -->
         <main class="content-area">
             <div class="content-title">
                 <h1 class="main-title-seo" id="display-title">📢 ตารางคะแนนและผลการแข่งขันสดแบบ Real-time ทุกคู่ของวันนี้</h1>
             </div>
-            
             <div class="widget-render-zone">
                 <div id="DOM_element_id_in_your_website_1785962037862"></div>
             </div>
         </main>
-
     </div>
 
-    <footer>
-        &copy; 2026 Matrix LiveScore Platform | ข้อมูลแมตช์ฟุตบอลจริงอัปเดตเรียลไทม์พร้อมระบบเสียงเตือนประตูเปิดใช้งานสมบูรณ์
-    </footer>
+    <footer>&copy; 2026 Matrix LiveScore Platform | ข้อมูลแมตช์ฟุตบอลอัปเดตเรียลไทม์ส่งตรงจากสนามจริง</footer>
 
-    <!-- ฝังชุดสคริปต์ดั้งเดิมตัวเก่งของคุณเพื่อดึงข้อมูลสดแม่นยำ -->
+    <!-- ฝังชุดสคริปต์ดั้งเดิมของ Broadage Sports -->
     <script>
       (function(b, s, p, o, r, t) {
         b["broadage"] = b["broadage"] || [];
         if (!b["broadage"].length) {
-          r = document.createElement(s);
-          t = document.getElementsByTagName(s);
-          r.async = true;
-          r.src = p;
-          t.parentNode.insertBefore(r, t);
+          r = document.createElement(s); t = document.getElementsByTagName(s)[0];
+          r.async = true; r.src = p; t.parentNode.insertBefore(r, t);
         }
         b["broadage"].push({ "bundleId": o.bundleId, "widgets": o.widgets, "accountId": o.accountId });
       })(window, "script", "//://broadage.com", {
@@ -201,50 +82,35 @@
           "liveScore": [{
             "element": "DOM_element_id_in_your_website_1785962037862",
             "coverageId": "6bf0cf44-e13a-44e1-8008-ff17ba6c2128",
-            "options": {
-              "goalSound": true,
-              "webNotification": true,
-              "onlyNotifyTopEvents": true,
-              "sportFilter": false,
-              "remainingTime": true,
-              "showDatePickerOnAllSelectedDates": true,
-              "sportId": 1
-            }
+            "options": { "goalSound": true, "webNotification": true, "onlyNotifyTopEvents": true, "sportFilter": false, "remainingTime": true, "showDatePickerOnAllSelectedDates": true, "sportId": 1 }
           }]
         }
       });
     </script>
 
-    <!-- ระบบควบคุมการคัดกรองข้อมูลคู่บอลภายในตัว Widget ของ Broadage ดั้งเดิมอย่างปลอดภัย -->
+    <!-- ระบบช่วยกรองทัวร์นาเมนต์แยกรายลีกย่อย -->
     <script>
         function filterBroadageLeague(keyword, element, titleText) {
             let buttons = document.getElementsByClassName('league-item-box');
-            for (let i = 0; i < buttons.length; i++) {
-                buttons[i].classList.remove('active');
-            }
+            for (let i = 0; i < buttons.length; i++) { buttons[i].classList.remove('active'); }
             element.classList.add('active');
             document.getElementById('display-title').innerText = titleText;
-
             let widgetMain = document.getElementById('DOM_element_id_in_your_website_1785962037862');
             if (widgetMain) {
                 let innerInput = widgetMain.querySelector('input[type="text"], .brd-search-input, [class*="search"] input');
                 if (innerInput) {
                     innerInput.value = keyword;
-                    let inputEvent = new Event('input', { bubbles: true });
-                    innerInput.dispatchEvent(inputEvent);
-                } else {
-                    try {
-                        let searchInput = document.querySelector('.brd-search-box input');
-                        if(searchInput) {
-                            searchInput.value = keyword;
-                            searchInput.dispatchEvent(new Event('input', { bubbles: true }));
-                        }
-                    } catch(e) { console.log("กำลังกรองข้อมูล..."); }
+                    innerInput.dispatchEvent(new Event('input', { bubbles: true }));
                 }
             }
         }
-
         function searchLeague() {
             let input = document.getElementById('teamSearch').value.toLowerCase();
             let items = document.getElementsByClassName('league-item-box');
-for (let i = 0; i < items.length; i++) {if (items[i].innerText.toLowerCase().includes(input)) {items[i].style.display = "flex";} else {items[i].style.display = "none";}}}
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].innerText.toLowerCase().includes(input)) { items[i].style.display = "flex"; } else { items[i].style.display = "none"; }
+            }
+        }
+    </script>
+</body>
+</html>
