@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ Real-time LiveScore Matrix</title>
+    <title>⚡ ผลบอลสด Real-time วันนี้</title>
     <style>
         body { 
             background-color: #09090b; 
@@ -24,83 +24,14 @@
             text-shadow: 0 0 10px rgba(249, 115, 22, 0.4);
         }
         .score-container { 
-            max-width: 800px; 
+            max-width: 1000px; 
             margin: 25px auto; 
-            padding: 20px; 
+            padding: 10px; 
             background-color: #18181b; 
             border-radius: 16px; 
             border: 1px solid #27272a;
             box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-        }
-        .league-title {
-            background-color: #27272a;
-            padding: 10px 15px;
-            font-weight: bold;
-            font-size: 14px;
-            border-radius: 8px;
-            color: #f97316;
-            margin-bottom: 15px;
-        }
-        .match-card {
-            background-color: #121214;
-            border: 1px solid #27272a;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .live-badge {
-            background-color: #052e16;
-            color: #4ade80;
-            border: 1px solid #14532d;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: bold;
-            display: inline-block;
-            animation: pulse 1.5s infinite;
-        }
-        .team-section {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 300px;
-            margin-left: 20px;
-        }
-        .team-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 16px;
-            font-weight: 600;
-        }
-        .score-num {
-            font-size: 20px;
-            font-weight: 900;
-            color: #a1a1aa;
-            transition: all 0.3s ease;
-        }
-        .score-active {
-            color: #f97316;
-            text-shadow: 0 0 10px rgba(249, 115, 22, 0.6);
-        }
-        .event-log {
-            font-size: 12px;
-            color: #22c55e;
-            margin-top: 5px;
-            font-weight: normal;
-        }
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-        .footer-note {
-            text-align: center;
-            color: #52525b;
-            font-size: 12px;
-            margin-top: 30px;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -109,87 +40,13 @@
     <div class="web-header">⚡ REAL-TIME LIVESCORE MATRIX</div>
 
     <div class="score-container">
-        <div class="league-title">🏆 CHAMPIONS LEAGUE - วันนี้ (LIVE REAL-TIME)</div>
-        
-        <!-- แมตช์ที่ 1 -->
-        <div class="match-card">
-            <div style="display: flex; align-items: center;">
-                <div>
-                    <span class="live-badge" id="time-m1">LIVE 72'</span>
-                </div>
-                <div class="team-section">
-                    <div class="team-row">
-                        <span>แมนเชสเตอร์ ยูไนเต็ด</span>
-                        <span class="score-num score-active" id="score-m1-a">2</span>
-                    </div>
-                    <div class="team-row">
-                        <span>เรอัล มาดริด</span>
-                        <span class="score-num score-active" id="score-m1-b">2</span>
-                    </div>
-                    <div class="event-log" id="log-m1">⚽ บรูโน แฟร์นันดส์ ยิงประตูนาทีที่ 68'!</div>
-                </div>
-            </div>
-            <div style="color: #f97316; font-weight: bold;">แข่งอยู่</div>
-        </div>
-
-        <!-- แมตช์ที่ 2 -->
-        <div class="match-card">
-            <div style="display: flex; align-items: center;">
-                <div>
-                    <span class="live-badge" id="time-m2">LIVE 34'</span>
-                </div>
-                <div class="team-section">
-                    <div class="team-row">
-                        <span>ลิเวอร์พูล</span>
-                        <span class="score-num score-active" id="score-m2-a">1</span>
-                    </div>
-                    <div class="team-row">
-                        <span>แมนเชสเตอร์ ซิตี้</span>
-                        <span class="score-num" id="score-m2-b">0</span>
-                    </div>
-                    <div class="event-log" id="log-m2">⚽ โมฮาเหม็ด ซาลาห์ ยิงประตูนาทีที่ 12'!</div>
-                </div>
-            </div>
-            <div style="color: #f97316; font-weight: bold;">แข่งอยู่</div>
-        </div>
+        <!-- ตัวดึงตารางคะแนนและผลบอลสดแมตช์จริงทั่วโลกวันนี้ -->
+        <iframe src="https://broadage.com" width="100%" height="700" frameborder="0" scrolling="yes"></iframe>
     </div>
 
-    <div class="footer-note">
-        &copy; 2026 LiveScore Matrix. ระบบจำลองอัปเดตสกอร์ดิจิทัลเรียบลอยเสร็จสิ้นแบบ Real-time 
+    <div style="text-align: center; color: #52525b; font-size: 12px; margin: 30px 0;">
+        &copy; 2026 LiveScore Matrix. ข้อมูลโปรแกรมการแข่งขันและสกอร์สดจากสนามจริงทั่วโลก
     </div>
-
-    <!-- ส่วนคำสั่งควบคุมการอัปเดต Real-time อัตโนมัติในหน้าเว็บ -->
-    <script>
-        let min1 = 72;
-        let min2 = 34;
-        let score1A = 2;
-        let score1B = 2;
-        let score2A = 1;
-        let score2B = 0;
-
-        // สคริปต์รันอัปเดตเวลาและแต้มทุก ๆ 4 วินาทีอัตโนมัติ
-        setInterval(() => {
-            // เพิ่มนาทีแข่งขัน
-            if(min1 < 90) min1++;
-            if(min2 < 90) min2++;
-            document.getElementById('time-m1').innerText = `LIVE ${min1}'`;
-            document.getElementById('time-m2').innerText = `LIVE ${min2}'`;
-
-            // สุ่มโอกาสทำประตูแบบเรียลไทม์
-            let rand = Math.random();
-            if (rand > 0.85 && min1 < 90) {
-                score1B++;
-                document.getElementById('score-m1-b').innerText = score1B;
-                document.getElementById('score-m1-b').classList.add('score-active');
-                document.getElementById('log-m1').innerText = `⚽ GOAL!! เรอัล มาดริด ตีไข่แตกเพิ่มสำเร็จในนาทีที่ ${min1}'!`;
-            } else if (rand < 0.15 && min2 < 90) {
-                score2B++;
-                document.getElementById('score-m2-b').innerText = score2B;
-                document.getElementById('score-m2-b').classList.add('score-active');
-                document.getElementById('log-m2').innerText = `⚽ GOAL!! แมนเชสเตอร์ ซิตี้ ยิงตีเสมอไล่ขึ้นมานาทีที่ ${min2}'!`;
-            }
-        }, 4000);
-    </script>
 
 </body>
 </html>
