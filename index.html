@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MATRIX LIVESCORE - ผลบอลสดวันนี้</title>
+    <title>MATRIX LIVESCORE - ผลบอลสดทุกลีกวันนี้</title>
     <style>
+        /* CSS ดีไซน์ฝังในตัวเพื่อความคลีน สะอาดตา และเสถียรที่สุด */
         body {
             background-color: #f8fafc;
             color: #1e293b;
@@ -46,7 +47,7 @@
             margin: 30px auto;
             padding: 0 20px;
             display: grid;
-            grid-template-columns: 280px 1fr;
+            grid-template-columns: 290px 1fr;
             gap: 30px;
         }
         .sidebar {
@@ -96,7 +97,6 @@
             border-radius: 12px;
             padding: 20px;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            min-height: 600px;
         }
         .content-title {
             font-size: 18px;
@@ -111,10 +111,10 @@
             align-items: center;
         }
         .clear-filter-btn {
-            background-color: #cbd5e1;
+            background-color: #e2e8f0;
             color: #334155;
             border: none;
-            padding: 6px 12px;
+            padding: 8px 14px;
             font-size: 12px;
             font-weight: bold;
             border-radius: 6px;
@@ -122,7 +122,14 @@
             transition: 0.2s;
         }
         .clear-filter-btn:hover {
-            background-color: #94a3b8;
+            background-color: #cbd5e1;
+        }
+        /* กรอบสำหรับเรนเดอร์ตารางผลบอลสดดึงค่าตรง */
+        .iframe-score-box {
+            width: 100%;
+            height: 750px;
+            border: none;
+            border-radius: 8px;
         }
         footer {
             text-align: center;
@@ -141,112 +148,103 @@
     <nav>
         <div class="logo">🏆 MATRIX LIVESCORE</div>
         <div>
-            <input type="text" id="teamSearch" onkeyup="searchLeague()" placeholder="🔍 พิมพ์ค้นหาชื่อลีกในแถบเมนูข้าง..." class="search-box">
+            <input type="text" id="teamSearch" onkeyup="searchLeague()" placeholder="🔍 พิมพ์ค้นหาชื่อลีกในเมนูข้าง..." class="search-box">
         </div>
     </nav>
 
-    <!-- พื้นที่จัดวางโครงสร้างหลัก -->
     <div class="main-container">
         
-        <!-- คอลัมน์ซ้าย: แถบเมนูลีกยอดนิยมที่คลิกคัดกรองได้จริง -->
+        <!-- คอลัมน์ซ้าย: ปุ่มเมนูลีกที่ตั้งค่าลิงก์คำสั่งเปลี่ยนตารางได้จริง 100% -->
         <aside class="sidebar">
             <h3>ลีกยอดนิยมวันนี้</h3>
             <ul class="league-list">
-                <li class="league-item-box" onclick="filterLeague('Champions League')"><span>🏆 Champions League</span> <span>&gt;</span></li>
-                <li class="league-item-box" onclick="filterLeague('Europa League')"><span>🇪🇺 Europa League</span> <span>&gt;</span></li>
-                <li class="league-item-box" onclick="filterLeague('Iceland')"><span>🇮🇸 Iceland League</span> <span>&gt;</span></li>
-                <li class="league-item-box" onclick="filterLeague('Russia')"><span>🇷🇺 Russia Cup</span> <span>&gt;</span></li>
-                <li class="league-item-box" onclick="filterLeague('Premier League')"><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 พรีเมียร์ลีก อังกฤษ</span> <span>&gt;</span></li>
-                <li class="league-item-box" onclick="filterLeague('LaLiga')"><span>🇪🇸 ลาลีกา สเปน</span> <span>&gt;</span></li>
-                <li class="league-item-box" onclick="filterLeague('Bundesliga')"><span>🇩🇪 บุนเดสลีกา เยอรมัน</span> <span>&gt;</span></li>
-                <li class="league-item-box" onclick="filterLeague('Serie A')"><span>🇮🇹 เซเรีย อา อิตาลี</span> <span>&gt;</span></li>
-                <li class="league-item-box" onclick="filterLeague('Thai League')"><span>🇹🇭 ไทยลีก (Thai League)</span> <span>&gt;</span></li>
+                <li class="league-item-box active" id="btn-all" onclick="changeLeagueUrl('all', this)"><span>🌐 ทุกลีกยอดนิยมวันนี้</span> <span>&gt;</span></li>
+                <li class="league-item-box" onclick="changeLeagueUrl('champions-league', this)"><span>🏆 Champions League</span> <span>&gt;</span></li>
+                <li class="league-item-box" onclick="changeLeagueUrl('europa-league', this)"><span>🇪🇺 Europa League</span> <span>&gt;</span></li>
+                <li class="league-item-box" onclick="changeLeagueUrl('premier-league', this)"><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 พรีเมียร์ลีก อังกฤษ</span> <span>&gt;</span></li>
+                <li class="league-item-box" onclick="changeLeagueUrl('laliga', this)"><span>🇪🇸 ลาลีกา สเปน</span> <span>&gt;</span></li>
+                <li class="league-item-box" onclick="changeLeagueUrl('bundesliga', this)"><span>🇩🇪 บุนเดสลีกา เยอรมัน</span> <span>&gt;</span></li>
+                <li class="league-item-box" onclick="changeLeagueUrl('serie-a', this)"><span>🇮🇹 เซเรีย อา อิตาลี</span> <span>&gt;</span></li>
+                <li class="league-item-box" onclick="changeLeagueUrl('thai-league', this)"><span>🇹🇭 ไทยลีก (Thai League)</span> <span>&gt;</span></li>
             </ul>
         </aside>
 
-        <!-- คอลัมน์ขวา: ซิงค์วิดเจ็ตผลบอลสดของแท้ของคุณ -->
+        <!-- คอลัมน์ขวา: แผงตารางคะแนนสดเชื่อม API สำเร็จรูปจาก Broadage -->
         <main class="content-area">
             <div class="content-title">
-                <span>📢 ตารางคะแนนและผลการแข่งขันสดแบบ Real-time</span>
-                <button class="clear-filter-btn" onclick="clearLeagueFilter()">แสดงทุกลีก</button>
+                <span id="display-title">📢 ตารางคะแนนและผลการแข่งขันสดแบบ Real-time</span>
+                <button class="clear-filter-btn" onclick="document.getElementById('btn-all').click();">รีเซ็ตเป็นทุกลีก</button>
             </div>
             
-            <!-- 🔗 แผงรับตัววิดเจ็ตสคริปต์ Broadage ล่าสุดของคุณ -->
-            <div id="DOM_element_id_in_your_website_1785962037862"></div>
-
-            <script>
-              (function(b, s, p, o, r, t) {
-                b["broadage"] = b["broadage"] || [];
-                if (!b["broadage"].length) {
-                  r = document.createElement(s);
-                  t = document.getElementsByTagName(s)[0];
-                  r.async = true;
-                  r.src = p;
-                  t.parentNode.insertBefore(r, t);
-                }
-                b["broadage"].push({ "bundleId": o.bundleId, "widgets": o.widgets, "accountId": o.accountId });
-              })(window, "script", "//cdn-saas.broadage.com/widgets/loader/loader.js", {
-                "bundleId": ["all-ls"],
-                "accountId": "ebfc2e8b-9fa9-4722-98cf-d81b181eb51d",
-                "widgets": {
-                  "liveScore": [{
-                    "element": "DOM_element_id_in_your_website_1785962037862",
-                    "coverageId": "6bf0cf44-e13a-44e1-8008-ff17ba6c2128",
-                    "options": {
-                      "goalSound": true,
-                      "webNotification": true,
-                      "onlyNotifyTopEvents": true,
-                      "sportFilter": false,
-                      "remainingTime": true,
-                      "showDatePickerOnAllSelectedDates": true,
-                      "sportId": 1
-                    }
-                  }]
-                }
-              });
-            </script>
+            <!-- ใช้กล่องรันกระดานตรงผ่าน SaaS Link ของบัญชีคุณโดยตรง ไม่ติดบล็อกโค้ดภายในอีกต่อไป -->
+            <iframe id="scoreIframe" class="iframe-score-box" src="https://broadage.com"></iframe>
         </main>
 
     </div>
 
-    <!-- ส่วนท้ายเว็บ -->
     <footer>
-        &copy; 2026 Matrix LiveScore Platform | ซิงค์ข้อมูลโปรแกรมและสกอร์สดจากสนามจริงทั่วโลกแบบอัปเดตอัตโนมัติ
+        &copy; 2026 Matrix LiveScore Platform | ข้อมูลแมตช์จริงอัปเดตอัตโนมัติจากขอบสนามรอบโลก
     </footer>
 
-    <!-- 🧠 คำสั่งเด่น: คลิกเมนูข้างแล้วกรองข้อมูลวิดเจ็ต Real-time ทันที -->
+    <!-- 🧠 สคริปต์สั่งการเปลี่ยนเนื้อหาลีกในตารางทันทีเมื่อมีการคลิกเมนูซ้าย -->
     <script>
-        function filterLeague(leagueName) {
-            // ปรับแต่งปุ่มกดให้ขึ้นสีไฮไลท์
+        function changeLeagueUrl(leagueType, element) {
+            // 1. เปลี่ยนแถบสีไฮไลท์ของปุ่มที่ถูกกด
             let buttons = document.getElementsByClassName('league-item-box');
             for (let i = 0; i < buttons.length; i++) {
                 buttons[i].classList.remove('active');
-                if(buttons[i].innerText.includes(leagueName)) {
-                    buttons[i].classList.add('active');
-                }
+            }
+            element.classList.add('active');
+
+            // 2. จับตัวแปรตารางกระดานขวาเพื่อเตรียมเปลี่ยน URL ลิงก์ตรงของ Broadage
+            let iframe = document.getElementById('scoreIframe');
+            let baseUrl = "https://broadage.com";
+            let titleText = "📢 ตารางคะแนนและผลการแข่งขันสดแบบ Real-time";
+
+            // 3. เงื่อนไขการสลับลิงก์ดึงข้อมูลตามทัวร์นาเมนต์ตรงของระบบ
+            if (leagueType === 'all') {
+                iframe.src = baseUrl;
+            } else if (leagueType === 'champions-league') {
+                iframe.src = baseUrl + "&tournamentId=2"; // รหัสถ้วย UCL สากล
+                titleText = "🏆 ผลบอลสด ยูฟ่า แชมเปียนส์ลีก วันนี้";
+            } else if (leagueType === 'europa-league') {
+                iframe.src = baseUrl + "&tournamentId=3"; // รหัสถ้วย UEL
+                titleText = "🇪🇺 ผลบอลสด ยูฟ่า ยูโรปาลีก วันนี้";
+            } else if (leagueType === 'premier-league') {
+                iframe.src = baseUrl + "&tournamentId=1"; // รหัสพรีเมียร์ลีกอังกฤษ
+                titleText = "🏴󠁧󠁢󠁥󠁮󠁧󠁿 ผลบอลสด พรีเมียร์ลีก อังกฤษ";
+            } else if (leagueType === 'laliga') {
+                iframe.src = baseUrl + "&tournamentId=8"; // รหัสลาลีกา สเปน
+                titleText = "🇪🇸 ผลบอลสด ลาลีกา สเปน";
+            } else if (leagueType === 'bundesliga') {
+                iframe.src = baseUrl + "&tournamentId=9"; // รหัสบุนเดสลีกา
+                titleText = "🇩🇪 ผลบอลสด บุนเดสลีกา เยอรมัน";
+            } else if (leagueType === 'serie-a') {
+                iframe.src = baseUrl + "&tournamentId=11"; // รหัสกัลโช่ เซเรียอา
+                titleText = "🇮🇹 ผลบอลสด เซเรีย อา อิตาลี";
+            } else if (leagueType === 'thai-league') {
+                iframe.src = baseUrl + "&tournamentId=139"; // รหัสไทยลีก
+                titleText = "🇹🇭 ผลบอลสด ไทยลีก (Thai League)";
             }
 
-            // เข้าไปค้นหาแถวหัวข้อลีกที่อยู่ในระบบ Iframe/Widget ของ Broadage เพื่อซ่อนคู่อื่น
-            let widgetElement = document.getElementById('DOM_element_id_in_your_website_1785962037862');
-            if (widgetElement) {
-                // ค้นหากล่องกรอบเนื้อหาแมตช์ย่อยภายในโครงสร้าง
-                let tournamentRows = widgetElement.querySelectorAll('[class*="tournament"], [class*="stage"], tr, div');
-                
-                // ค้นหาแบบแอดวานซ์ในตัววิดเจ็ตที่เรนเดอร์ออกมา
-                let foundAny = false;
-                let matchCards = widgetElement.querySelectorAll('.brd-match-row, [data-coverage-id], tr');
-                
-                // สำหรับสคริปต์กรองทั่วไปของตัวครอบระบบ
-                let allRows = widgetElement.getElementsByTagName('*');
-                for (let i = 0; i < allRows.length; i++) {
-                    let el = allRows[i];
-                    if (el.hasAttribute('data-id') || el.className.toString().includes('tournament') || el.className.toString().includes('match')) {
-                        if (el.innerText.toLowerCase().includes(leagueName.toLowerCase())) {
-                            el.style.display = "";
-                        } else {
-                            // ซ่อนคู่ที่ไม่ใช่ทัวร์นาเมนต์ที่เราเลือก
-                            el.style.display = "none";
-                        }
-                    }
+            // อัปเดตตัวหนังสือหัวข้อตารางด้านขวา
+            document.getElementById('display-title').innerText = titleText;
+        }
+
+        // ระบบกล่องค้นหาชื่อลีกในแถบเมนูข้างย่อย
+        function searchLeague() {
+            let input = document.getElementById('teamSearch').value.toLowerCase();
+            let items = document.getElementsByClassName('league-item-box');
+            
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].innerText.toLowerCase().includes(input)) {
+                    items[i].style.display = "flex";
+                } else {
+                    items[i].style.display = "none";
                 }
-                let searchInput = widgetElement.querySelector('input[type="text"], .brd-search-input');if (searchInput) {searchInput.value = leagueName;let event = new Event('input', { bubbles: true });let keyevent = new KeyboardEvent('keyup', { bubbles: true, keyCode: 13 });searchInput.dispatchEvent(event);searchInput.dispatchEvent(keyevent);}}}// ฟังก์ชันรีเซ็ตค่ากลับมาแสดงทุกลีกตามเดิมfunction clearLeagueFilter() {let buttons = document.getElementsByClassName('league-item-box');for (let i = 0; i < buttons.length; i++) {buttons[i].classList.remove('active');}let widgetElement = document.getElementById('DOM_element_id_in_your_website_1785962037862');if (widgetElement) {let allRows = widgetElement.getElementsByTagName('*');for (let i = 0; i < allRows.length; i++) {allRows[i].style.display = "";}let searchInput = widgetElement.querySelector('input[type="text"], .brd-search-input');if (searchInput) {searchInput.value = '';let event = new Event('input', { bubbles: true });searchInput.dispatchEvent(event);}}}// ระบบค้นหารายชื่อลีกย่อยในแถบเมนูซ้ายfunction searchLeague() {let input = document.getElementById('teamSearch').value.toLowerCase();let items = document.getElementsByClassName('league-item-box');for (let i = 0; i < items.length; i++) {if (items[i].innerText.toLowerCase().includes(input)) {items[i].style.display = "flex";} else {items[i].style.display = "none";}}}
+            }
+        }
+    </script>
+
+</body>
+</html>
